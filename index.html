@@ -1,450 +1,718 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>SQL. Инженерия данных — курс на Stepik</title>
-  <!-- Подключаем иконки Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
-        integrity="sha512-4Svm0GdYYqzx6HB2QfPJ+ug9lPk6kfPdUlLaXbAcaO/ikS3IEP3et2AdJ4+NhjXBDCEfPfN2AvI6rcCnxGk1Kg==" 
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23007acc'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-size='42' fill='white' font-family='Segoe UI'%3ESQL%3C/text%3E%3C/svg%3E">
+  <meta charset="UTF-8" />
+  <title>SQL. Инженерия данных — курс</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Font Awesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-4Svm0GdYYqzx6HB2QfPJ+ug9lPk6kfPdUlLaXbAcaO/ikS3IEP3et2AdJ4+NhjXBDCEfPfN2AvI6rcCnxGk1Kg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
+    /* Сброс */
+    * {
       margin: 0;
       padding: 0;
-      background: #fdfdfd;
-      color: #2c3e50;
+      box-sizing: border-box;
     }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      background-color: #f9f9f9;
+      line-height: 1.5;
+    }
+
+    /* ---------- HEADER (Hero) ---------- */
     header {
-      background: url('https://source.unsplash.com/1600x900/?database,technology') no-repeat center center/cover;
-      color: white;
-      text-align: center;
+      background: linear-gradient(
+          rgba(0, 0, 0, 0.6),
+          rgba(0, 0, 0, 0.6)
+        ),
+        url('https://source.unsplash.com/1600x900/?database,technology') center/cover
+          no-repeat;
       padding: 80px 20px;
-    }
-    header h1 {
-      font-size: 3em;
-      margin-bottom: 15px;
-    }
-    header p {
-      font-size: 1.3em;
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-    .section {
-      padding: 50px 20px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .section h2 {
-      font-size: 2em;
-      margin-bottom: 25px;
-      color: #007acc;
       text-align: center;
+      color: #fff;
     }
-    .animated {
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      animation: slideInDown 1s ease forwards;
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.3s;
     }
-    .visible {
-      opacity: 1;
-      transform: translateY(0);
+
+    header .btn-cta {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #00b894;
+      color: #fff;
+      font-weight: 500;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 1rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.5s;
     }
-    .example-block {
-      background: #f4f9ff;
-      border-left: 5px solid #007acc;
-      padding: 20px;
-      margin: 30px 0;
-      font-family: monospace;
-      white-space: pre-wrap;
+
+    header .btn-cta:hover {
+      background-color: #019374;
     }
-    .reviews {
-      background: #f4f4f4;
-      padding: 50px 20px;
-      text-align: center;
+
+    @keyframes slideInDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    .review {
-      max-width: 700px;
-      margin: 20px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: left;
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    .review p {
-      font-style: italic;
-      margin-bottom: 10px;
-      line-height: 1.6;
-    }
-    .review .review-author {
+
+    /* ---------- BENEFITS ---------- */
+    .benefits {
       display: flex;
-      align-items: center;
-      font-style: normal;
-      font-weight: bold;
-      color: #333;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
     }
-    .review-author i {
-      margin-right: 8px;
+
+    .benefit-item {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      flex: 1 1 300px;
+      max-width: 320px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .benefit-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .benefit-item i {
+      font-size: 2rem;
+      margin-bottom: 15px;
       color: #007acc;
     }
-    .faq {
-      padding: 50px 20px;
+
+    .benefit-item h3 {
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      color: #444;
     }
-    .faq-item {
+
+    /* ---------- ABOUT COURSE ---------- */
+    .about-course {
+      max-width: 1000px;
+      margin: 60px auto;
+      background-color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      border-radius: 8px;
+      padding: 40px;
+    }
+
+    .about-course h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #007acc;
       margin-bottom: 20px;
     }
-    .faq-item h3 {
-      cursor: pointer;
-      color: #007acc;
+
+    .about-course p {
+      margin-bottom: 20px;
+      line-height: 1.7;
     }
-    .faq-item p {
-      display: none;
-      padding-top: 10px;
-    }
-    .cta {
-      background: #007acc;
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .cta a {
-      background: white;
-      color: #007acc;
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1.1em;
-    }
-    .cta a:hover {
-      background: #e0e0e0;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #777;
-      padding: 30px 20px;
-      background: #f4f4f4;
-    }
-    /* Секция с программой курса */
+
+    /* ---------- PROGRAM ---------- */
     .course-program {
-      background: #ffffff;
-      padding: 50px 20px;
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 20px;
     }
+
     .course-program h2 {
       text-align: center;
       color: #007acc;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
-    .module-list {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .module-item {
-      margin-bottom: 20px;
-    }
-    .module-item h3 {
+
+    .modules-container {
       display: flex;
-      align-items: center;
-      font-size: 1.2em;
-      margin-bottom: 5px;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
     }
-    .module-item h3 i {
-      margin-right: 8px;
-      color: #007acc;
-    }
-    .module-sublist {
-      margin-left: 25px;
-      list-style: none;
-      padding: 0;
-    }
-    .module-sublist li {
+
+    .module-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      padding: 20px;
+      max-width: 300px;
+      flex: 1 1 300px;
       position: relative;
-      padding-left: 1.2em;
-      margin-bottom: 5px;
+      transition: transform 0.3s ease;
     }
-    .module-sublist li::before {
+
+    .module-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .module-card h3 {
+      font-size: 1.2rem;
+      color: #007acc;
+      margin-bottom: 10px;
+    }
+
+    .module-card ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .module-card li {
+      margin: 8px 0;
+      position: relative;
+      padding-left: 15px;
+    }
+
+    .module-card li::before {
       content: "\f061";
       font-family: "Font Awesome 6 Free";
       font-weight: 900;
-      display: inline-block;
       position: absolute;
       left: 0;
       color: #007acc;
+    }
+
+    /* ---------- SLIDER (REVIEWS) ---------- */
+    .reviews {
+      background-color: #f0f6ff;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reviews h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #007acc;
+    }
+
+    .slider-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .slider-wrapper {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      padding: 30px;
+    }
+
+    .slide-content {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .slide-content p {
+      font-style: italic;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .review-author {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .slider-buttons {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .slider-buttons button {
+      background: #007acc;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+
+    .slider-buttons button:hover {
+      opacity: 1;
+    }
+
+    /* ---------- SLIDER (SCREENSHOTS) ---------- */
+    .screenshots {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      position: relative;
+    }
+
+    .screenshots h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #007acc;
+    }
+
+    .screenshots-container {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .screenshots-wrapper {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .screenshot-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .screenshot-slide img {
+      width: 80%;
+      max-height: 400px;
+      object-fit: contain;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      background-color: #fff;
+    }
+
+    .screenshots-buttons {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .screenshots-buttons button {
+      background: #007acc;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+
+    .screenshots-buttons button:hover {
+      opacity: 1;
+    }
+
+    /* ---------- CTA BLOCK ---------- */
+    .cta-block {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .cta-block h2 {
+      font-size: 2rem;
+      color: #007acc;
+      margin-bottom: 20px;
+    }
+
+    .cta-block .btn-cta {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #007acc;
+      color: #fff;
+      font-weight: 500;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .cta-block .btn-cta:hover {
+      background-color: #005c99;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 30px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    footer p {
+      margin-bottom: 10px;
+    }
+
+    footer a {
+      color: #00b894;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      .benefits,
+      .modules-container {
+        gap: 20px;
+      }
+      .reviews h2,
+      .screenshots h2 {
+        margin-bottom: 20px;
+      }
+      .screenshots-wrapper {
+        flex-direction: column; /* Если нужно, можно оставить row */
+      }
+      .screenshot-slide img {
+        width: 90%;
+        max-height: 300px;
+      }
     }
   </style>
 </head>
 <body>
 
-<header class="animated">
+<!-- ---------- HEADER ---------- -->
+<header>
   <h1>SQL. Инженерия данных</h1>
-  <p>Базовый курс по SQL для начинающих инженеров данных и аналитиков. Без воды, с практикой, разбором кейсов и финальным проектом.</p>
+  <p>Пройдите увлекательный путь от новичка до уверенного специалиста по базам данных!</p>
+  <a class="btn-cta" href="#program">Присоединиться к курсу</a>
 </header>
 
-<section class="section animated">
-  <h2>Примеры заданий</h2>
-  <div class="example-block">
--- Найти клиентов, у которых имя начинается на 'А'
-SELECT client_id, first_name, last_name
-FROM clients
-WHERE first_name LIKE 'А%';
+<!-- ---------- BENEFITS ---------- -->
+<section class="benefits">
+  <div class="benefit-item">
+    <i class="fas fa-laptop-code"></i>
+    <h3>Практика с реальными задачами</h3>
+    <p>Решаем кейсы, основанные на реальных проектах. Никакой воды, только актуальные знания.</p>
   </div>
-  <div class="example-block">
--- Подсчитать количество поездок для каждого водителя
-SELECT driver_id, COUNT(*) AS trip_count
-FROM drives
-GROUP BY driver_id;
+  <div class="benefit-item">
+    <i class="fas fa-chalkboard-teacher"></i>
+    <h3>Поддержка эксперта</h3>
+    <p>Регулярные разборы ошибок, ответы на вопросы и дополнительные материалы в чатах.</p>
   </div>
-</section>
-
-<!-- Секция с отзывами (реальные отзывы) -->
-<section class="reviews animated">
-  <h2>Отзывы студентов</h2>
-
-  <div class="review">
-    <p>
-      «Мне курс понравился. Форма подачи материала достаточно проста (схема известная), 
-      но в то же время написано понятным языком даже для начинающих, и идёт постепенное и закономерное усложнение.
-      <br><br>
-      Из плюсов:
-      <ul>
-        <li>Подкупает вовлеченность автора почти в онлайн-поддержку (этот момент переоценить трудно).</li>
-        <li>Ценны комменты, замечания и разбор ошибок в чате группы.</li>
-        <li>Отсутствие дедлайнов — можно самостоятельно планировать своё учебное время.</li>
-        <li>Спокойные рекомендации на другие ресурсы по теме.</li>
-      </ul>
-      Из минусов:
-      <ul>
-        <li>Отсутствие дедлайнов — НУЖНО самому планировать свою работу с курсом :) и самоорганизовываться.</li>
-      </ul>
-      Успехов автору в развитии своего начинания!
-      »
-    </p>
-    <div class="review-author">
-      <i class="fas fa-user"></i>
-      <span>— Андрей Мишин</span>
-    </div>
-  </div>
-
-  <div class="review">
-    <p>
-      «Прошла курс по рекомендации знакомого. Хорошо, что есть и видео, и текстовый формат + интересно порешать задачки. Автор на связи.»
-    </p>
-    <div class="review-author">
-      <i class="fas fa-user"></i>
-      <span>— Юлия Дербышкина</span>
-    </div>
-  </div>
-
-  <div class="review">
-    <p>
-      «Курс будет полезен тем, кто только знакомится с базой. В ходе обучения попадались ошибки и недопонимания. 
-      Я писала автору, он очень быстро возвращался с обратной связью и исправлениями замечаний. Довольно хорошо.»
-    </p>
-    <div class="review-author">
-      <i class="fas fa-user"></i>
-      <span>— Юлия Патрикеева</span>
-    </div>
+  <div class="benefit-item">
+    <i class="fas fa-user-clock"></i>
+    <h3>Гибкий график</h3>
+    <p>Никаких жёстких дедлайнов: учитесь в своём темпе и пересматривайте материалы в любое время.</p>
   </div>
 </section>
 
-<!-- Программа курса -->
-<section class="course-program animated">
+<!-- ---------- ABOUT COURSE ---------- -->
+<div class="about-course" id="about">
+  <h2>О курсе</h2>
+  <p>
+    Данный курс — отличный старт для тех, кто делает первые шаги в мире реляционных баз данных и SQL. 
+    Вас ждут короткие видеоуроки, практические задания, а также финальный проект, где вы создадите, 
+    оптимизируете и проанализируете базу данных, максимально приблизившись к реальному опыту Data Engineer.
+  </p>
+  <p>
+    Мы пройдёмся по всем основным аспектам SQL: от создания таблиц и индексов 
+    до сложных подзапросов, CTE и оконных функций. Благодаря пошаговому формату,
+    вы легко усвоите материал и сможете применять его на практике уже во время обучения.
+  </p>
+</div>
+
+<!-- ---------- PROGRAM ---------- -->
+<section class="course-program" id="program">
   <h2>Программа курса</h2>
-  <div class="module-list">
-    <!-- 1 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 1. О курсе</h3>
-      <ul class="module-sublist">
+  <div class="modules-container">
+    <div class="module-card">
+      <h3>1. О курсе</h3>
+      <ul>
         <li>1.1 Знакомство</li>
       </ul>
     </div>
-    <!-- 2 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 2. Введение в SQL и реляционные базы данных</h3>
-      <ul class="module-sublist">
+    <div class="module-card">
+      <h3>2. Введение в SQL</h3>
+      <ul>
         <li>2.1 Базы данных</li>
-        <li>2.2 Основы реляционных баз данных</li>
+        <li>2.2 Основы реляционных БД</li>
         <li>2.3 Введение в SQL</li>
       </ul>
     </div>
-    <!-- 3 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 3. Типы данных и описание учебной базы данных</h3>
-      <ul class="module-sublist">
-        <li>3.1 Основные типы данных в SQL</li>
-        <li>3.2 Выбор подходящих типов данных</li>
-        <li>3.3 Описание учебной базы данных</li>
+    <div class="module-card">
+      <h3>3. Типы данных</h3>
+      <ul>
+        <li>3.1 Основные типы</li>
+        <li>3.2 Выбор подходящих типов</li>
+        <li>3.3 Учебная БД</li>
       </ul>
     </div>
-    <!-- 4 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 4. Основные операции в SQL</h3>
-      <ul class="module-sublist">
-        <li>4.1 Основы запросов (SELECT + WHERE)</li>
-        <li>4.2 Литералы</li>
-        <li>4.3 Функции</li>
-        <li>4.4 Сортировка и группировка (ORDER BY + GROUP BY + HAVING)</li>
-        <li>4.5 Логические операторы (AND + OR + NOT)</li>
-        <li>4.6 Операторы вхождений и диапазонов (LIKE + IN + BETWEEN + IS NULL)</li>
-        <li>4.7 Соединение таблиц (all JOIN's)</li>
-        <li>4.8 Оператор условий (CASE)</li>
-        <li>4.9 Ограничение выборки (LIMIT + DISTINCT)</li>
-        <li>4.10 Объединение результатов (UNION + UNION ALL + INTERSECT + EXCEPT)</li>
+    <div class="module-card">
+      <h3>4. Основные операции</h3>
+      <ul>
+        <li>SELECT, WHERE</li>
+        <li>GROUP BY, JOIN</li>
+        <li>CASE, UNION</li>
       </ul>
     </div>
-    <!-- 5 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 5. Подзапросы и Common Table Expressions (CTE)</h3>
-      <ul class="module-sublist">
-        <li>5.1 Подзапросы и их применение</li>
-        <li>5.2 Common Table Expressions (CTE)</li>
+    <div class="module-card">
+      <h3>5. Подзапросы и CTE</h3>
+      <ul>
+        <li>Подзапросы</li>
+        <li>Common Table Expressions</li>
       </ul>
     </div>
-    <!-- 6 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 6. Управление схемой базы данных</h3>
-      <ul class="module-sublist">
-        <li>6.1 Создание и изменение таблиц</li>
-        <li>6.2 Работа с индексами</li>
-        <li>6.3 Ограничения и внешние ключи</li>
-        <li>6.4 Представления (Views)</li>
+    <div class="module-card">
+      <h3>6. Управление схемой</h3>
+      <ul>
+        <li>Создание и изменение таблиц</li>
+        <li>Индексы, внешние ключи</li>
+        <li>Представления (View)</li>
       </ul>
     </div>
-    <!-- 7 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 7. Введение в оконные функции</h3>
-      <ul class="module-sublist">
-        <li>7.1 Общие сведения об оконных функциях</li>
-        <li>7.2 Сравнение оконных и агрегатных функций</li>
-        <li>7.3 Общий синтаксис оконных функций</li>
+    <div class="module-card">
+      <h3>7. Оконные функции</h3>
+      <ul>
+        <li>Общие сведения</li>
+        <li>Сравнение с агрегатными</li>
+        <li>Синтаксис окон</li>
       </ul>
     </div>
-    <!-- 8 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 8. Базовые элементы оконных функций</h3>
-      <ul class="module-sublist">
-        <li>8.1 ORDER BY</li>
-        <li>8.2 PARTITION BY</li>
-        <li>8.3 Определение фрейма (Window Frame)</li>
-        <li>8.4 Именованное окно (Named Window Definition)</li>
+    <div class="module-card">
+      <h3>8. Продвинутые темы SQL</h3>
+      <ul>
+        <li>Оптимизация</li>
+        <li>Ранжирующие функции</li>
+        <li>Практические кейсы</li>
       </ul>
     </div>
-    <!-- 9 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 9. Логический порядок выполнения SQL</h3>
-      <ul class="module-sublist">
-        <li>9.1 Логический порядок выполнения операторов в SQL</li>
-        <li>9.2 Использование оконных функций в SELECT и ORDER BY</li>
+    <div class="module-card">
+      <h3>9. Настройка окружения</h3>
+      <ul>
+        <li>Установка MySQL</li>
+        <li>DBeaver</li>
+        <li>Импорт/экспорт</li>
       </ul>
     </div>
-    <!-- 10 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 10. Разновидности оконных функций</h3>
-      <ul class="module-sublist">
-        <li>10.1 Агрегатные оконные функции</li>
-        <li>10.2 Ранжирующие функции (Ranking Functions)</li>
-        <li>10.3 Функции распределения (Distribution Functions)</li>
-        <li>10.4 Аналитические функции (Analytic Functions)</li>
-      </ul>
-    </div>
-    <!-- 11 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 11. Расширенные возможности оконных функций</h3>
-      <ul class="module-sublist">
-        <li>11.1 Гибкая настройка фрейма</li>
-        <li>11.2 Сочетание нескольких оконных функций в одном запросе</li>
-        <li>11.3 Производительность и оптимизация</li>
-      </ul>
-    </div>
-    <!-- 12 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 12. Установка СУБД MySQL и клиента DBeaver</h3>
-      <ul class="module-sublist">
-        <li>12.1 Установка MySQL на Windows</li>
-        <li>12.2 Установка DBeaver Community Edition</li>
-        <li>12.3 Настройка соединения</li>
-        <li>12.4 Импорт CSV в DBeaver</li>
-        <li>12.5 Экспорт результатов запроса в CSV</li>
-      </ul>
-    </div>
-    <!-- 13 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 13. Проект в СУБД MySQL</h3>
-      <ul class="module-sublist">
-        <li>13.1 Описание и выполнение</li>
-        <li>13.2 Проверка результатов</li>
-      </ul>
-    </div>
-    <!-- 14 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 14. Бонусный модуль. Практика</h3>
-      <ul class="module-sublist">
-        <li>14.1 Описание новой учебной базы данных</li>
-        <li>14.2 Раздел 1: Базовые запросы и манипуляции с данными</li>
-        <li>14.3 Раздел 2: Создание и управление структурами БД</li>
-        <li>14.4 Раздел 3: Подзапросы и CTE</li>
-      </ul>
-    </div>
-    <!-- 15 -->
-    <div class="module-item">
-      <h3><i class="fas fa-database"></i> 15. Заключение</h3>
-      <ul class="module-sublist">
-        <li>15.1 Послесловие</li>
+    <div class="module-card">
+      <h3>10. Проект + Бонус</h3>
+      <ul>
+        <li>Финальный проект</li>
+        <li>Расширенная практика</li>
+        <li>Поддержка и разбор</li>
       </ul>
     </div>
   </div>
 </section>
 
-<section class="faq animated">
-  <h2>Часто задаваемые вопросы</h2>
-  <div class="faq-item">
-    <h3 onclick="toggleFAQ(this)">Нужен ли опыт в программировании?</h3>
-    <p>Нет, курс рассчитан на новичков. Всё объясняется простым языком.</p>
-  </div>
-  <div class="faq-item">
-    <h3 onclick="toggleFAQ(this)">Будет ли сертификат?</h3>
-    <p>Да, после успешного завершения курса на Stepik ты получишь сертификат.</p>
+<!-- ---------- REVIEWS SLIDER ---------- -->
+<section class="reviews">
+  <h2>Отзывы студентов</h2>
+  <div class="slider-container">
+    <div class="slider-wrapper" id="reviewsSlider">
+
+      <!-- Slide 1 -->
+      <div class="slide">
+        <div class="slide-content">
+          <p>
+            «Мне курс понравился. Форма подачи материала проста, но понятна. Автор активно 
+            поддерживает студентов, что огромный плюс!»
+          </p>
+          <div class="review-author">— Алексей</div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide">
+        <div class="slide-content">
+          <p>
+            «Прошла курс по рекомендации знакомого. Отлично, что есть и видео, и текст + 
+            интересные задачи. Автор постоянно на связи!»
+          </p>
+          <div class="review-author">— Марина</div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide">
+        <div class="slide-content">
+          <p>
+            «Курс полезен новичкам. Автор быстро отвечает на вопросы и исправляет 
+            замечания. Очень удобно и эффективно!»
+          </p>
+          <div class="review-author">— Ирина</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="slider-buttons">
+      <button id="prevReview"><i class="fas fa-chevron-left"></i></button>
+      <button id="nextReview"><i class="fas fa-chevron-right"></i></button>
+    </div>
   </div>
 </section>
 
-<section class="cta animated">
-  <h2>Готов учиться?</h2>
-  <p>Начни изучать SQL уже сегодня на Stepik</p>
-  <a href="https://stepik.org/course/210499/promo" target="_blank">Перейти на курс</a>
+<!-- ---------- SCREENSHOTS SLIDER ---------- -->
+<section class="screenshots">
+  <h2>Скриншоты уроков</h2>
+  <div class="screenshots-container">
+    <div class="screenshots-wrapper" id="screenshotsSlider">
+      <!-- Slide 1 -->
+      <div class="screenshot-slide">
+        <img src="screenshot1.png" alt="Скриншот урока 1" />
+      </div>
+      <!-- Slide 2 -->
+      <div class="screenshot-slide">
+        <img src="screenshot2.png" alt="Скриншот урока 2" />
+      </div>
+      <!-- Slide 3 -->
+      <div class="screenshot-slide">
+        <img src="screenshot3.png" alt="Скриншот урока 3" />
+      </div>
+    </div>
+    <div class="screenshots-buttons">
+      <button id="prevScreenshot"><i class="fas fa-chevron-left"></i></button>
+      <button id="nextScreenshot"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
 </section>
 
+<!-- ---------- CTA BLOCK ---------- -->
+<section class="cta-block">
+  <h2>Начни учиться уже сегодня</h2>
+  <p>Сделай шаг навстречу карьере инженера данных или аналитика</p>
+  <a class="btn-cta" href="https://stepik.org/course/210499/promo" target="_blank">
+    Перейти на курс
+  </a>
+</section>
+
+<!-- ---------- FOOTER ---------- -->
 <footer>
-  &copy; 2025 Дмитрий Кузьмин — SQL. Инженерия данных. Сделано с любовью к данным.
+  <p>&copy; 2025 Дмитрий Кузьмин — SQL. Инженерия данных</p>
+  <p>
+    Сделано с любовью к данным | <a href="https://stepik.org/" target="_blank">Stepik</a>
+  </p>
 </footer>
 
 <script>
-function toggleFAQ(element) {
-  var answer = element.nextElementSibling;
-  answer.style.display = (answer.style.display === "block") ? "none" : "block";
-}
+  // ---------------- REVIEWS SLIDER ----------------
+  const reviewsSlider = document.getElementById('reviewsSlider');
+  const prevReviewBtn = document.getElementById('prevReview');
+  const nextReviewBtn = document.getElementById('nextReview');
 
-// Анимация появления элементов при прокрутке
-function revealOnScroll() {
-  let elements = document.querySelectorAll('.animated');
-  let windowHeight = window.innerHeight;
+  let reviewIndex = 0;
+  const reviewSlides = document.querySelectorAll('#reviewsSlider .slide');
 
-  elements.forEach(function(element) {
-    let position = element.getBoundingClientRect().top;
-    if (position < windowHeight - 50) {
-      element.classList.add('visible');
+  function showReviewSlide(index) {
+    // Учитываем количество слайдов
+    if (index < 0) {
+      reviewIndex = reviewSlides.length - 1;
+    } else if (index >= reviewSlides.length) {
+      reviewIndex = 0;
+    } else {
+      reviewIndex = index;
     }
+    // Смещение по ширине контейнера
+    reviewsSlider.style.transform = `translateX(-${reviewIndex * 100}%)`;
+  }
+
+  prevReviewBtn.addEventListener('click', () => {
+    showReviewSlide(reviewIndex - 1);
   });
-}
+  nextReviewBtn.addEventListener('click', () => {
+    showReviewSlide(reviewIndex + 1);
+  });
 
-document.addEventListener('scroll', revealOnScroll);
-document.addEventListener('DOMContentLoaded', revealOnScroll);
+  // ---------------- SCREENSHOTS SLIDER ----------------
+  const screenshotsSlider = document.getElementById('screenshotsSlider');
+  const prevScreenshotBtn = document.getElementById('prevScreenshot');
+  const nextScreenshotBtn = document.getElementById('nextScreenshot');
+
+  let screenshotIndex = 0;
+  const screenshotSlides = document.querySelectorAll('#screenshotsSlider .screenshot-slide');
+
+  function showScreenshotSlide(index) {
+    if (index < 0) {
+      screenshotIndex = screenshotSlides.length - 1;
+    } else if (index >= screenshotSlides.length) {
+      screenshotIndex = 0;
+    } else {
+      screenshotIndex = index;
+    }
+    screenshotsSlider.style.transform = `translateX(-${screenshotIndex * 100}%)`;
+  }
+
+  prevScreenshotBtn.addEventListener('click', () => {
+    showScreenshotSlide(screenshotIndex - 1);
+  });
+  nextScreenshotBtn.addEventListener('click', () => {
+    showScreenshotSlide(screenshotIndex + 1);
+  });
+
+  // Инициируем начальное положение (0 слайд)
+  showReviewSlide(reviewIndex);
+  showScreenshotSlide(screenshotIndex);
 </script>
-
 </body>
 </html>
