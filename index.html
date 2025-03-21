@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL. Инженерия данных — курс на Stepik</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23007acc'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='42' fill='white' font-family='Segoe UI'>SQL</text></svg>">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background: #fdfdfd; color: #2c3e50; }
+    header { background: #1a1a1a; color: white; padding: 60px 20px; text-align: center; }
+    header h1 { font-size: 2.8em; margin-bottom: 15px; }
+    header p { font-size: 1.3em; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+    .section { padding: 50px 20px; max-width: 900px; margin: 0 auto; }
+    .section h2 { font-size: 2em; margin-bottom: 25px; color: #007acc; }
+    .section ul { list-style: disc; padding-left: 20px; line-height: 1.6; }
+    .section p { font-size: 1.1em; line-height: 1.7; }
+    .highlight { color: #007acc; font-weight: bold; }
+    .example-block { background: #f4f9ff; border-left: 5px solid #007acc; padding: 20px; margin: 30px 0; font-family: monospace; white-space: pre-wrap; }
+    .cta { background: #007acc; color: white; text-align: center; padding: 40px 20px; }
+    .cta a { background: white; color: #007acc; padding: 14px 28px; border-radius: 8px; font-weight: bold; text-decoration: none; font-size: 1.1em; }
+    .cta a:hover { background: #e0e0e0; }
+    footer { text-align: center; font-size: 0.9em; color: #777; padding: 30px 20px; background: #f4f4f4; }
+    a { color: #007acc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>SQL. Инженерия данных</h1>
+  <p>Базовый курс по SQL для начинающих инженеров данных и аналитиков. Без воды, с практикой, разбором кейсов и финальным проектом.</p>
+</header>
+
+<section class="section">
+  <h2>Зачем этот курс?</h2>
+  <ul>
+    <li><span class="highlight">Ты разберёшься в SQL</span>: с самого нуля до уверенной работы с запросами</li>
+    <li><span class="highlight">Поймёшь, как устроены таблицы и связи</span> в реальной базе данных</li>
+    <li><span class="highlight">Научишься писать запросы</span>, использовать JOIN, агрегировать и фильтровать данные</li>
+    <li><span class="highlight">Финальный проект</span>: проанализируешь данные по поездкам и платежам</li>
+  </ul>
+</section>
+
+<section class="section program">
+  <h2>Что в программе?</h2>
+  <ul>
+    <li>Блок 1. Основы SELECT, фильтрация, сортировка, LIMIT</li>
+    <li>Блок 2. Арифметика и литералы, логические операторы</li>
+    <li>Блок 3. Агрегатные функции, GROUP BY, HAVING</li>
+    <li>Блок 4. JOIN'ы и объединение таблиц</li>
+    <li>Блок 5. Подзапросы, представления, функции</li>
+    <li>Блок 6. Оконные функции</li>
+    <li>Финальный проект: аналитика по поездкам, клиентам и водителям</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Примеры заданий</h2>
+  <div class="example-block">
+-- Найти клиентов, у которых имя начинается на 'А'
+SELECT client_id, first_name, last_name
+FROM clients
+WHERE first_name LIKE 'А%';
+  </div>
+  <div class="example-block">
+-- Подсчитать количество поездок для каждого водителя
+SELECT driver_id, COUNT(*) AS trip_count
+FROM drives
+GROUP BY driver_id;
+  </div>
+  <div class="example-block">
+-- Найти поездки, где стоимость была выше средней
+SELECT *
+FROM drives
+WHERE fare > (SELECT AVG(fare) FROM drives);
+  </div>
+</section>
+
+<section class="section">
+  <h2>Кому подойдёт</h2>
+  <ul>
+    <li>Тем, кто только начинает путь в Data Engineering</li>
+    <li>Новичкам в SQL и базах данных</li>
+    <li>BI-специалистам и аналитикам, которые хотят систематизировать знания</li>
+    <li>Студентам и джунам, кто хочет устроиться в IT</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>О преподавателе</h2>
+  <p>Привет! Меня зовут Дмитрий. Я инженер данных в крупной финтех-компании, веду <a href="https://t.me/kuzmin_dmitry91" target="_blank">Telegram-канал</a> для начинающих специалистов и помогаю студентам освоить SQL на практике. Этот курс — результат моего подхода: просто, по делу и с акцентом на реальные задачи.</p>
+</section>
+
+<section class="cta">
+  <h2>Готов учиться?</h2>
+  <p>Начни изучать SQL уже сегодня на Stepik</p>
+  <a href="https://stepik.org/course/210499/promo" target="_blank">Перейти на курс</a>
+</section>
+
+<footer>
+  &copy; 2025 Дмитрий Кузьмин — SQL. Инженерия данных. Сделано с любовью к данным.
+</footer>
+
+</body>
+</html>
