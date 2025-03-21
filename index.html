@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <title>SQL. Инженерия данных — курс</title>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  />
-  <!-- Font Awesome Icons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts (пример: Roboto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" 
+    rel="stylesheet">
+
+  <!-- Font Awesome (иконки, если понадобятся) -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -18,95 +20,126 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
-    /* Сброс */
+    /* ---------- Общие стили и цветовая палитра ---------- */
+    :root {
+      /* Базовый светлый фон (бежевый) */
+      --color-bg: #f9f4e8;
+      /* Основной тёмно-коричневый/бордовый (для заголовков, акцентов) */
+      --color-primary: #7f2b25;
+      /* Вспомогательный коричневый для кнопок, иконок и т. п. */
+      --color-accent: #a27557;
+      /* Цвет текста */
+      --color-text: #333;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
     }
 
     body {
-      font-family: 'Roboto', sans-serif;
-      color: #333;
-      background-color: #f9f9f9;
-      line-height: 1.5;
+      background-color: var(--color-bg);
+      color: var(--color-text);
     }
 
-    /* ---------- HEADER (Hero) ---------- */
+    a {
+      text-decoration: none;
+    }
+
+    /* ---------- Шапка (header) с логотипом и навигацией ---------- */
     header {
-      background: linear-gradient(
-          rgba(0, 0, 0, 0.6),
-          rgba(0, 0, 0, 0.6)
-        ),
-        url('https://source.unsplash.com/1600x900/?database,technology') center/cover
-          no-repeat;
-      padding: 80px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 5%;
+      background-color: #fffaf0; /* немного светлее для контраста */
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      width: 50px; /* Подгоните размер логотипа */
+      height: 50px;
+    }
+
+    .logo-container h1 {
+      font-size: 1.4rem;
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--color-text);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--color-primary);
+    }
+
+    /* ---------- Hero (большой баннер) ---------- */
+    .hero {
       text-align: center;
-      color: #fff;
+      padding: 80px 20px;
+      background: linear-gradient(
+          rgba(255, 250, 240, 0.8),
+          rgba(255, 250, 240, 0.8)
+        ),
+        url('https://source.unsplash.com/1600x900/?database,technology') center/cover no-repeat;
     }
 
-    header h1 {
-      font-size: 3rem;
+    .hero h2 {
+      font-size: 2.8rem;
+      color: var(--color-primary);
       margin-bottom: 20px;
-      animation: slideInDown 1s ease forwards;
-      opacity: 0;
-      transform: translateY(-50px);
     }
 
-    header p {
-      font-size: 1.2rem;
+    .hero p {
       max-width: 700px;
       margin: 0 auto 30px;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1s ease forwards;
-      animation-delay: 0.3s;
+      line-height: 1.6;
     }
 
-    header .btn-cta {
+    .btn-cta {
       display: inline-block;
       padding: 15px 30px;
-      background-color: #00b894;
+      background-color: var(--color-accent);
       color: #fff;
       font-weight: 500;
       border: none;
-      border-radius: 6px;
+      border-radius: 4px;
       cursor: pointer;
-      text-decoration: none;
       font-size: 1rem;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1s ease forwards;
-      animation-delay: 0.5s;
+      transition: background 0.3s;
     }
 
-    header .btn-cta:hover {
-      background-color: #019374;
+    .btn-cta:hover {
+      background-color: #8d6348;
     }
 
-    @keyframes slideInDown {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ---------- BENEFITS ---------- */
+    /* ---------- Блок преимуществ ---------- */
     .benefits {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 30px;
-      max-width: 1000px;
+      justify-content: center;
+      max-width: 1100px;
       margin: 40px auto;
       padding: 20px;
     }
@@ -114,44 +147,44 @@
     .benefit-item {
       background: #fff;
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       flex: 1 1 300px;
       max-width: 320px;
       padding: 30px 20px;
       text-align: center;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s;
     }
 
     .benefit-item:hover {
-      transform: translateY(-5px);
+      transform: translateY(-3px);
     }
 
     .benefit-item i {
       font-size: 2rem;
       margin-bottom: 15px;
-      color: #007acc;
+      color: var(--color-primary);
     }
 
     .benefit-item h3 {
       margin-bottom: 10px;
-      font-size: 1.3rem;
-      color: #444;
+      font-size: 1.2rem;
+      color: var(--color-primary);
     }
 
-    /* ---------- ABOUT COURSE ---------- */
+    /* ---------- О курсе ---------- */
     .about-course {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 60px auto;
       background-color: #fff;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
       border-radius: 8px;
-      padding: 40px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      padding: 40px 20px;
     }
 
     .about-course h2 {
       text-align: center;
       font-size: 2rem;
-      color: #007acc;
+      color: var(--color-primary);
       margin-bottom: 20px;
     }
 
@@ -160,17 +193,18 @@
       line-height: 1.7;
     }
 
-    /* ---------- PROGRAM ---------- */
+    /* ---------- Программа (пример) ---------- */
     .course-program {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 60px auto;
       padding: 20px;
     }
 
     .course-program h2 {
       text-align: center;
-      color: #007acc;
+      color: var(--color-primary);
       margin-bottom: 40px;
+      font-size: 2rem;
     }
 
     .modules-container {
@@ -183,21 +217,20 @@
     .module-card {
       background: #fff;
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       padding: 20px;
       max-width: 300px;
       flex: 1 1 300px;
-      position: relative;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s;
     }
 
     .module-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-3px);
     }
 
     .module-card h3 {
       font-size: 1.2rem;
-      color: #007acc;
+      color: var(--color-primary);
       margin-bottom: 10px;
     }
 
@@ -214,190 +247,94 @@
     }
 
     .module-card li::before {
-      content: "\f061";
+      content: "\f061"; /* Иконка стрелки из Font Awesome */
       font-family: "Font Awesome 6 Free";
       font-weight: 900;
       position: absolute;
       left: 0;
-      color: #007acc;
+      color: var(--color-primary);
     }
 
-    /* ---------- SLIDER (REVIEWS) ---------- */
+    /* ---------- Отзывы (пример слайдера можно добавить) ---------- */
     .reviews {
-      background-color: #f0f6ff;
+      background-color: #fffaf0;
       padding: 60px 20px;
-      position: relative;
-      overflow: hidden;
+      text-align: center;
     }
 
     .reviews h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #007acc;
+      color: var(--color-primary);
+      margin-bottom: 40px;
+      font-size: 2rem;
     }
 
-    .slider-container {
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .slider-wrapper {
+    /* Для упрощения: три отзыва в ряд */
+    .review-list {
       display: flex;
-      transition: transform 0.4s ease-in-out;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
-    .slide {
-      min-width: 100%;
-      box-sizing: border-box;
-      padding: 30px;
-    }
-
-    .slide-content {
+    .review-item {
       background: #fff;
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       padding: 20px;
-      text-align: center;
+      max-width: 300px;
+      text-align: left;
     }
 
-    .slide-content p {
+    .review-item p {
       font-style: italic;
       margin-bottom: 15px;
-      line-height: 1.6;
     }
 
     .review-author {
       font-weight: bold;
-      color: #333;
+      color: var(--color-text);
     }
 
-    .slider-buttons {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .slider-buttons button {
-      background: #007acc;
-      color: #fff;
-      border: none;
-      padding: 10px 18px;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 50%;
-      opacity: 0.8;
-    }
-
-    .slider-buttons button:hover {
-      opacity: 1;
-    }
-
-    /* ---------- SLIDER (SCREENSHOTS) ---------- */
-    .screenshots {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 20px;
-      position: relative;
-    }
-
-    .screenshots h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #007acc;
-    }
-
-    .screenshots-container {
-      overflow: hidden;
-      position: relative;
-    }
-
-    .screenshots-wrapper {
-      display: flex;
-      transition: transform 0.4s ease-in-out;
-    }
-
-    .screenshot-slide {
-      min-width: 100%;
-      box-sizing: border-box;
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .screenshot-slide img {
-      width: 80%;
-      max-height: 400px;
-      object-fit: contain;
-      border: 2px solid #ddd;
-      border-radius: 6px;
-      background-color: #fff;
-    }
-
-    .screenshots-buttons {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .screenshots-buttons button {
-      background: #007acc;
-      color: #fff;
-      border: none;
-      padding: 10px 18px;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 50%;
-      opacity: 0.8;
-    }
-
-    .screenshots-buttons button:hover {
-      opacity: 1;
-    }
-
-    /* ---------- CTA BLOCK ---------- */
+    /* ---------- CTA (повторный призыв к действию) ---------- */
     .cta-block {
       text-align: center;
       padding: 60px 20px;
+      background-color: #fff;
+      margin-top: 40px;
     }
 
     .cta-block h2 {
       font-size: 2rem;
-      color: #007acc;
+      color: var(--color-primary);
       margin-bottom: 20px;
     }
 
     .cta-block .btn-cta {
       display: inline-block;
       padding: 15px 30px;
-      background-color: #007acc;
+      background-color: var(--color-primary);
       color: #fff;
       font-weight: 500;
       border: none;
-      border-radius: 6px;
+      border-radius: 4px;
       cursor: pointer;
-      text-decoration: none;
       font-size: 1rem;
+      transition: background 0.3s;
     }
 
     .cta-block .btn-cta:hover {
-      background-color: #005c99;
+      background-color: #6e241f;
     }
 
     /* ---------- FOOTER ---------- */
     footer {
-      background-color: #333;
-      color: #fff;
-      padding: 30px;
+      background-color: #f1ece3;
+      padding: 30px 5%;
       text-align: center;
       margin-top: 40px;
+      color: var(--color-text);
     }
 
     footer p {
@@ -405,7 +342,7 @@
     }
 
     footer a {
-      color: #00b894;
+      color: var(--color-primary);
       text-decoration: none;
     }
 
@@ -413,306 +350,180 @@
       text-decoration: underline;
     }
 
-    /* ---------- RESPONSIVE ---------- */
+    /* ---------- Адаптивность ---------- */
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 2.2rem;
-      }
-      header p {
-        font-size: 1rem;
-      }
       .benefits,
-      .modules-container {
+      .modules-container,
+      .review-list {
         gap: 20px;
       }
-      .reviews h2,
-      .screenshots h2 {
-        margin-bottom: 20px;
+
+      .review-item {
+        max-width: 100%;
       }
-      .screenshots-wrapper {
-        flex-direction: column; /* Если нужно, можно оставить row */
+
+      .logo-container h1 {
+        font-size: 1.1rem;
       }
-      .screenshot-slide img {
-        width: 90%;
-        max-height: 300px;
+
+      .hero h2 {
+        font-size: 2rem;
       }
     }
   </style>
 </head>
 <body>
+  <!-- ---------- HEADER с логотипом ---------- -->
+  <header>
+    <div class="logo-container">
+      <!-- Добавляем логотип (обязательно укажите реальный путь к файлу) -->
+      <img src="images/logo.png" alt="SQL Bear Logo" />
+      <h1>SQL Course</h1>
+    </div>
+    <!-- Пример простой навигации -->
+    <nav>
+      <ul>
+        <li><a href="#about">О курсе</a></li>
+        <li><a href="#program">Программа</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<!-- ---------- HEADER ---------- -->
-<header>
-  <h1>SQL. Инженерия данных</h1>
-  <p>Пройдите увлекательный путь от новичка до уверенного специалиста по базам данных!</p>
-  <a class="btn-cta" href="#program">Присоединиться к курсу</a>
-</header>
+  <!-- ---------- HERO SECTION ---------- -->
+  <section class="hero">
+    <h2>Освой SQL и стань инженером данных</h2>
+    <p>
+      Курс для тех, кто хочет быстро и эффективно научиться работать с реляционными базами данных. Развивайте навыки
+      написания запросов, оптимизации и анализа данных уже сегодня!
+    </p>
+    <button class="btn-cta">Начать обучение</button>
+  </section>
 
-<!-- ---------- BENEFITS ---------- -->
-<section class="benefits">
-  <div class="benefit-item">
-    <i class="fas fa-laptop-code"></i>
-    <h3>Практика с реальными задачами</h3>
-    <p>Решаем кейсы, основанные на реальных проектах. Никакой воды, только актуальные знания.</p>
-  </div>
-  <div class="benefit-item">
-    <i class="fas fa-chalkboard-teacher"></i>
-    <h3>Поддержка эксперта</h3>
-    <p>Регулярные разборы ошибок, ответы на вопросы и дополнительные материалы в чатах.</p>
-  </div>
-  <div class="benefit-item">
-    <i class="fas fa-user-clock"></i>
-    <h3>Гибкий график</h3>
-    <p>Никаких жёстких дедлайнов: учитесь в своём темпе и пересматривайте материалы в любое время.</p>
-  </div>
-</section>
+  <!-- ---------- BENEFITS ---------- -->
+  <section class="benefits">
+    <div class="benefit-item">
+      <i class="fas fa-laptop-code"></i>
+      <h3>Практика на реальных задачах</h3>
+      <p>Погрузитесь в практику: анализируйте и обрабатывайте данные, как в настоящих проектах.</p>
+    </div>
+    <div class="benefit-item">
+      <i class="fas fa-chalkboard-teacher"></i>
+      <h3>Поддержка автора</h3>
+      <p>Регулярные разборы вопросов и обратная связь в чатах и на вебинарах.</p>
+    </div>
+    <div class="benefit-item">
+      <i class="fas fa-user-clock"></i>
+      <h3>Гибкий график</h3>
+      <p>Учитесь в удобное время, без жёстких дедлайнов и лишнего стресса.</p>
+    </div>
+  </section>
 
-<!-- ---------- ABOUT COURSE ---------- -->
-<div class="about-course" id="about">
-  <h2>О курсе</h2>
-  <p>
-    Данный курс — отличный старт для тех, кто делает первые шаги в мире реляционных баз данных и SQL. 
-    Вас ждут короткие видеоуроки, практические задания, а также финальный проект, где вы создадите, 
-    оптимизируете и проанализируете базу данных, максимально приблизившись к реальному опыту Data Engineer.
-  </p>
-  <p>
-    Мы пройдёмся по всем основным аспектам SQL: от создания таблиц и индексов 
-    до сложных подзапросов, CTE и оконных функций. Благодаря пошаговому формату,
-    вы легко усвоите материал и сможете применять его на практике уже во время обучения.
-  </p>
-</div>
+  <!-- ---------- ABOUT COURSE ---------- -->
+  <section class="about-course" id="about">
+    <h2>О курсе</h2>
+    <p>
+      Курс «SQL. Инженерия данных» проведёт вас от основ реляционных БД до сложных запросов с подзапросами и оконными функциями.
+      Вы научитесь эффективно извлекать, фильтровать, объединять данные и оптимизировать запросы в реальных сценариях.
+    </p>
+    <p>
+      После завершения обучения у вас будет уверенное понимание SQL, опыт самостоятельной работы с MySQL / PostgreSQL и
+      готовность к более продвинутым темам в сфере Data Engineering или аналитики.
+    </p>
+  </section>
 
-<!-- ---------- PROGRAM ---------- -->
-<section class="course-program" id="program">
-  <h2>Программа курса</h2>
-  <div class="modules-container">
-    <div class="module-card">
-      <h3>1. О курсе</h3>
-      <ul>
-        <li>1.1 Знакомство</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <h3>2. Введение в SQL</h3>
-      <ul>
-        <li>2.1 Базы данных</li>
-        <li>2.2 Основы реляционных БД</li>
-        <li>2.3 Введение в SQL</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <h3>3. Типы данных</h3>
-      <ul>
-        <li>3.1 Основные типы</li>
-        <li>3.2 Выбор подходящих типов</li>
-        <li>3.3 Учебная БД</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <h3>4. Основные операции</h3>
-      <ul>
-        <li>SELECT, WHERE</li>
-        <li>GROUP BY, JOIN</li>
-        <li>CASE, UNION</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <h3>5. Подзапросы и CTE</h3>
-      <ul>
-        <li>Подзапросы</li>
-        <li>Common Table Expressions</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <h3>6. Управление схемой</h3>
-      <ul>
-        <li>Создание и изменение таблиц</li>
-        <li>Индексы, внешние ключи</li>
-        <li>Представления (View)</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <h3>7. Оконные функции</h3>
-      <ul>
-        <li>Общие сведения</li>
-        <li>Сравнение с агрегатными</li>
-        <li>Синтаксис окон</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <h3>8. Продвинутые темы SQL</h3>
-      <ul>
-        <li>Оптимизация</li>
-        <li>Ранжирующие функции</li>
-        <li>Практические кейсы</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <h3>9. Настройка окружения</h3>
-      <ul>
-        <li>Установка MySQL</li>
-        <li>DBeaver</li>
-        <li>Импорт/экспорт</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <h3>10. Проект + Бонус</h3>
-      <ul>
-        <li>Финальный проект</li>
-        <li>Расширенная практика</li>
-        <li>Поддержка и разбор</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ---------- REVIEWS SLIDER ---------- -->
-<section class="reviews">
-  <h2>Отзывы студентов</h2>
-  <div class="slider-container">
-    <div class="slider-wrapper" id="reviewsSlider">
-
-      <!-- Slide 1 -->
-      <div class="slide">
-        <div class="slide-content">
-          <p>
-            «Мне курс понравился. Форма подачи материала проста, но понятна. Автор активно 
-            поддерживает студентов, что огромный плюс!»
-          </p>
-          <div class="review-author">— Алексей</div>
-        </div>
+  <!-- ---------- PROGRAM (пример) ---------- -->
+  <section class="course-program" id="program">
+    <h2>Программа курса</h2>
+    <div class="modules-container">
+      <div class="module-card">
+        <h3>1. Введение</h3>
+        <ul>
+          <li>1.1 Знакомство</li>
+          <li>1.2 Установка и настройка</li>
+        </ul>
       </div>
-
-      <!-- Slide 2 -->
-      <div class="slide">
-        <div class="slide-content">
-          <p>
-            «Прошла курс по рекомендации знакомого. Отлично, что есть и видео, и текст + 
-            интересные задачи. Автор постоянно на связи!»
-          </p>
-          <div class="review-author">— Марина</div>
-        </div>
+      <div class="module-card">
+        <h3>2. Основы SQL</h3>
+        <ul>
+          <li>SELECT, WHERE, ORDER BY</li>
+          <li>GROUP BY, HAVING, JOIN</li>
+          <li>Функции и агрегации</li>
+        </ul>
       </div>
-
-      <!-- Slide 3 -->
-      <div class="slide">
-        <div class="slide-content">
-          <p>
-            «Курс полезен новичкам. Автор быстро отвечает на вопросы и исправляет 
-            замечания. Очень удобно и эффективно!»
-          </p>
-          <div class="review-author">— Ирина</div>
-        </div>
+      <div class="module-card">
+        <h3>3. Подзапросы и CTE</h3>
+        <ul>
+          <li>Коррелированные и некоррелированные</li>
+          <li>Common Table Expressions</li>
+        </ul>
       </div>
-
-    </div>
-    <div class="slider-buttons">
-      <button id="prevReview"><i class="fas fa-chevron-left"></i></button>
-      <button id="nextReview"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
-</section>
-
-<!-- ---------- SCREENSHOTS SLIDER ---------- -->
-<section class="screenshots">
-  <h2>Скриншоты уроков</h2>
-  <div class="screenshots-container">
-    <div class="screenshots-wrapper" id="screenshotsSlider">
-      <!-- Slide 1 -->
-      <div class="screenshot-slide">
-        <img src="screenshot1.png" alt="Скриншот урока 1" />
+      <div class="module-card">
+        <h3>4. Оконные функции</h3>
+        <ul>
+          <li>OVER, PARTITION BY, ORDER BY</li>
+          <li>Ранжирование и аналитические функции</li>
+        </ul>
       </div>
-      <!-- Slide 2 -->
-      <div class="screenshot-slide">
-        <img src="screenshot2.png" alt="Скриншот урока 2" />
+      <div class="module-card">
+        <h3>5. Оптимизация</h3>
+        <ul>
+          <li>Индексы и планы выполнения</li>
+          <li>Работа с большими таблицами</li>
+        </ul>
       </div>
-      <!-- Slide 3 -->
-      <div class="screenshot-slide">
-        <img src="screenshot3.png" alt="Скриншот урока 3" />
+      <div class="module-card">
+        <h3>6. Итоговый проект</h3>
+        <ul>
+          <li>Создание структуры</li>
+          <li>Загрузка и анализ реальных данных</li>
+          <li>Презентация результатов</li>
+        </ul>
       </div>
     </div>
-    <div class="screenshots-buttons">
-      <button id="prevScreenshot"><i class="fas fa-chevron-left"></i></button>
-      <button id="nextScreenshot"><i class="fas fa-chevron-right"></i></button>
+  </section>
+
+  <!-- ---------- REVIEWS ---------- -->
+  <section class="reviews" id="reviews">
+    <h2>Отзывы студентов</h2>
+    <div class="review-list">
+      <div class="review-item">
+        <p>
+          «Супер-понятные объяснения! Автор всегда на связи, плюс задания очень реалистичные. Теперь не боюсь работать
+          с большими таблицами и сложными запросами!»
+        </p>
+        <div class="review-author">— Елена</div>
+      </div>
+      <div class="review-item">
+        <p>
+          «Прошла курс за 2 месяца параллельно с работой. Узнала про подзапросы и оконные функции, чего не было в других
+          вводных курсах. Очень довольна.»
+        </p>
+        <div class="review-author">— Марина</div>
+      </div>
+      <div class="review-item">
+        <p>
+          «Как Data Analyst-джуниор, я искал чёткую базу по SQL. Этот курс на 100% оправдал ожидания. Рекомендую всем,
+          кто хочет разобраться в SQL глубже.»
+        </p>
+        <div class="review-author">— Алексей</div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ---------- CTA BLOCK ---------- -->
-<section class="cta-block">
-  <h2>Начни учиться уже сегодня</h2>
-  <p>Сделай шаг навстречу карьере инженера данных или аналитика</p>
-  <a class="btn-cta" href="https://stepik.org/course/210499/promo" target="_blank">
-    Перейти на курс
-  </a>
-</section>
+  <!-- ---------- CTA BLOCK ---------- -->
+  <section class="cta-block">
+    <h2>Готовы прокачать навыки?</h2>
+    <p>Присоединяйтесь к курсу и станьте востребованным специалистом в сфере данных</p>
+    <a class="btn-cta" href="https://stepik.org/course/210499/promo" target="_blank">
+      Перейти на курс
+    </a>
+  </section>
 
-<!-- ---------- FOOTER ---------- -->
-<footer>
-  <p>&copy; 2025 Дмитрий Кузьмин — SQL. Инженерия данных</p>
-  <p>
-    Сделано с любовью к данным | <a href="https://stepik.org/" target="_blank">Stepik</a>
-  </p>
-</footer>
-
-<script>
-  // ---------------- REVIEWS SLIDER ----------------
-  const reviewsSlider = document.getElementById('reviewsSlider');
-  const prevReviewBtn = document.getElementById('prevReview');
-  const nextReviewBtn = document.getElementById('nextReview');
-
-  let reviewIndex = 0;
-  const reviewSlides = document.querySelectorAll('#reviewsSlider .slide');
-
-  function showReviewSlide(index) {
-    // Учитываем количество слайдов
-    if (index < 0) {
-      reviewIndex = reviewSlides.length - 1;
-    } else if (index >= reviewSlides.length) {
-      reviewIndex = 0;
-    } else {
-      reviewIndex = index;
-    }
-    // Смещение по ширине контейнера
-    reviewsSlider.style.transform = `translateX(-${reviewIndex * 100}%)`;
-  }
-
-  prevReviewBtn.addEventListener('click', () => {
-    showReviewSlide(reviewIndex - 1);
-  });
-  nextReviewBtn.addEventListener('click', () => {
-    showReviewSlide(reviewIndex + 1);
-  });
-
-  // ---------------- SCREENSHOTS SLIDER ----------------
-  const screenshotsSlider = document.getElementById('screenshotsSlider');
-  const prevScreenshotBtn = document.getElementById('prevScreenshot');
-  const nextScreenshotBtn = document.getElementById('nextScreenshot');
-
-  let screenshotIndex = 0;
-  const screenshotSlides = document.querySelectorAll('#screenshotsSlider .screenshot-slide');
-
-  function showScreenshotSlide(index) {
-    if (index < 0) {
-      screenshotIndex = screenshotSlides.length - 1;
-    } else if (index >= screenshotSlides.length) {
-      screenshotIndex = 0;
-    } else {
-      screenshotIndex = index;
-    }
-    screenshotsSlider.style.transform = `translateX(-${screenshotIndex * 100}%)`;
-  }
-
-  prevScreenshotBtn.addEventListener('click', () => {
-    showScreenshotSlide(screenshotIndex - 1);
-  });
-  nextScreenshotBtn.addEventListener('click', () => {
-    showScreenshotSlide(screenshotIndex + 1);
-  });
-
-  // Инициируем начальное положение (0 слайд)
-  showReviewSlide(reviewIndex);
-  showScreenshotSlide(screenshotIndex);
-</script>
+  <!-- ---------- FOOTER ---------- -->
+  <footer>
+    <p>&copy; 2025 Дмитрий Кузьмин — SQL. Инженерия данных</p>
+    <p>С любовью к данным — <a href="https://stepik.org/" target="_blank">Stepik</a></p>
+  </footer>
 </body>
 </html>
