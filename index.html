@@ -1,529 +1,138 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>SQL. Инженерия данных — курс</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Google Fonts (пример: Roboto) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" 
-    rel="stylesheet">
-
-  <!-- Font Awesome (иконки, если понадобятся) -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    integrity="sha512-4Svm0GdYYqzx6HB2QfPJ+ug9lPk6kfPdUlLaXbAcaO/ikS3IEP3et2AdJ4+NhjXBDCEfPfN2AvI6rcCnxGk1Kg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-
+  <meta charset="UTF-8">
+  <title>Курс SQL. Инженерия данных — Бесплатный модуль</title>
   <style>
-    /* ---------- Общие стили и цветовая палитра ---------- */
-    :root {
-      /* Базовый светлый фон (бежевый) */
-      --color-bg: #f9f4e8;
-      /* Основной тёмно-коричневый/бордовый (для заголовков, акцентов) */
-      --color-primary: #7f2b25;
-      /* Вспомогательный коричневый для кнопок, иконок и т. п. */
-      --color-accent: #a27557;
-      /* Цвет текста */
-      --color-text: #333;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    body {
-      background-color: var(--color-bg);
-      color: var(--color-text);
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    /* ---------- Шапка (header) с логотипом и навигацией ---------- */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px 5%;
-      background-color: #fffaf0; /* немного светлее для контраста */
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-container img {
-      width: 50px; /* Подгоните размер логотипа */
-      height: 50px;
-    }
-
-    .logo-container h1 {
-      font-size: 1.4rem;
-      color: var(--color-primary);
-      font-weight: 700;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 20px;
-      list-style: none;
-    }
-
-    nav a {
-      color: var(--color-text);
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    nav a:hover {
-      color: var(--color-primary);
-    }
-
-    /* ---------- Hero (большой баннер) ---------- */
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(
-          rgba(255, 250, 240, 0.8),
-          rgba(255, 250, 240, 0.8)
-        ),
-        url('https://source.unsplash.com/1600x900/?database,technology') center/cover no-repeat;
-    }
-
-    .hero h2 {
-      font-size: 2.8rem;
-      color: var(--color-primary);
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      max-width: 700px;
-      margin: 0 auto 30px;
-      line-height: 1.6;
-    }
-
-    .btn-cta {
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; color: #333; }
+    header, footer { text-align: center; }
+    h1 { color: #2C3E50; }
+    h2 { color: #34495E; margin-top: 30px; }
+    ul { list-style: disc; margin-left: 20px; }
+    .usp, .benefits, .free-module { background-color: #F2F2F2; border: 1px solid #ccc; padding: 15px; margin: 20px 0; }
+    .cta {
       display: inline-block;
-      padding: 15px 30px;
-      background-color: var(--color-accent);
+      background-color: #3498DB;
       color: #fff;
-      font-weight: 500;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s;
-    }
-
-    .btn-cta:hover {
-      background-color: #8d6348;
-    }
-
-    /* ---------- Блок преимуществ ---------- */
-    .benefits {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-
-    .benefit-item {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      flex: 1 1 300px;
-      max-width: 320px;
-      padding: 30px 20px;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .benefit-item:hover {
-      transform: translateY(-3px);
-    }
-
-    .benefit-item i {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      color: var(--color-primary);
-    }
-
-    .benefit-item h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-      color: var(--color-primary);
-    }
-
-    /* ---------- О курсе ---------- */
-    .about-course {
-      max-width: 1100px;
-      margin: 60px auto;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      padding: 40px 20px;
-    }
-
-    .about-course h2 {
-      text-align: center;
-      font-size: 2rem;
-      color: var(--color-primary);
-      margin-bottom: 20px;
-    }
-
-    .about-course p {
-      margin-bottom: 20px;
-      line-height: 1.7;
-    }
-
-    /* ---------- Программа (пример) ---------- */
-    .course-program {
-      max-width: 1100px;
-      margin: 60px auto;
-      padding: 20px;
-    }
-
-    .course-program h2 {
-      text-align: center;
-      color: var(--color-primary);
-      margin-bottom: 40px;
-      font-size: 2rem;
-    }
-
-    .modules-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-    }
-
-    .module-card {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      padding: 20px;
-      max-width: 300px;
-      flex: 1 1 300px;
-      transition: transform 0.3s;
-    }
-
-    .module-card:hover {
-      transform: translateY(-3px);
-    }
-
-    .module-card h3 {
-      font-size: 1.2rem;
-      color: var(--color-primary);
-      margin-bottom: 10px;
-    }
-
-    .module-card ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-    }
-
-    .module-card li {
-      margin: 8px 0;
-      position: relative;
-      padding-left: 15px;
-    }
-
-    .module-card li::before {
-      content: "\f061"; /* Иконка стрелки из Font Awesome */
-      font-family: "Font Awesome 6 Free";
-      font-weight: 900;
-      position: absolute;
-      left: 0;
-      color: var(--color-primary);
-    }
-
-    /* ---------- Отзывы (пример слайдера можно добавить) ---------- */
-    .reviews {
-      background-color: #fffaf0;
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .reviews h2 {
-      color: var(--color-primary);
-      margin-bottom: 40px;
-      font-size: 2rem;
-    }
-
-    /* Для упрощения: три отзыва в ряд */
-    .review-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .review-item {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      padding: 20px;
-      max-width: 300px;
-      text-align: left;
-    }
-
-    .review-item p {
-      font-style: italic;
-      margin-bottom: 15px;
-    }
-
-    .review-author {
-      font-weight: bold;
-      color: var(--color-text);
-    }
-
-    /* ---------- CTA (повторный призыв к действию) ---------- */
-    .cta-block {
-      text-align: center;
-      padding: 60px 20px;
-      background-color: #fff;
-      margin-top: 40px;
-    }
-
-    .cta-block h2 {
-      font-size: 2rem;
-      color: var(--color-primary);
-      margin-bottom: 20px;
-    }
-
-    .cta-block .btn-cta {
-      display: inline-block;
-      padding: 15px 30px;
-      background-color: var(--color-primary);
-      color: #fff;
-      font-weight: 500;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s;
-    }
-
-    .cta-block .btn-cta:hover {
-      background-color: #6e241f;
-    }
-
-    /* ---------- FOOTER ---------- */
-    footer {
-      background-color: #f1ece3;
-      padding: 30px 5%;
-      text-align: center;
-      margin-top: 40px;
-      color: var(--color-text);
-    }
-
-    footer p {
-      margin-bottom: 10px;
-    }
-
-    footer a {
-      color: var(--color-primary);
+      padding: 15px 25px;
       text-decoration: none;
+      font-size: 1.2em;
+      border-radius: 5px;
+      margin-top: 20px;
     }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* ---------- Адаптивность ---------- */
-    @media (max-width: 768px) {
-      .benefits,
-      .modules-container,
-      .review-list {
-        gap: 20px;
-      }
-
-      .review-item {
-        max-width: 100%;
-      }
-
-      .logo-container h1 {
-        font-size: 1.1rem;
-      }
-
-      .hero h2 {
-        font-size: 2rem;
-      }
-    }
+    .section { margin-bottom: 40px; }
   </style>
 </head>
 <body>
-  <!-- ---------- HEADER с логотипом ---------- -->
   <header>
-    <div class="logo-container">
-      <!-- Добавляем логотип (обязательно укажите реальный путь к файлу) -->
-      <img src="images/logo.png" alt="SQL Bear Logo" />
-      <h1>SQL Course</h1>
-    </div>
-    <!-- Пример простой навигации -->
-    <nav>
-      <ul>
-        <li><a href="#about">О курсе</a></li>
-        <li><a href="#program">Программа</a></li>
-        <li><a href="#reviews">Отзывы</a></li>
-      </ul>
-    </nav>
+    <h1>Курс SQL. Инженерия данных</h1>
+    <p>Получите практические навыки работы с базами данных, создания аналитических витрин и построения BI-дэшбордов на реальных примерах.</p>
   </header>
 
-  <!-- ---------- HERO SECTION ---------- -->
-  <section class="hero">
-    <h2>Освой SQL и стань инженером данных</h2>
-    <p>
-      Курс для тех, кто хочет быстро и эффективно научиться работать с реляционными базами данных. Развивайте навыки
-      написания запросов, оптимизации и анализа данных уже сегодня!
-    </p>
-    <button class="btn-cta">Начать обучение</button>
+  <section class="section">
+    <h2>Структура курса</h2>
+    <ol>
+      <li>
+        <strong>Введение в SQL и основы работы с данными</strong>
+        <ul>
+          <li>Знакомство с базами данных и установкой PostgreSQL, DBeaver</li>
+          <li>Базовые SQL‑запросы: SELECT, FROM, WHERE, JOIN</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Продвинутые запросы и группировка</strong>
+        <ul>
+          <li>Агрегация, GROUP BY, HAVING</li>
+          <li>Подзапросы, CTE и практические кейсы</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Оконные функции</strong>
+        <ul>
+          <li>ROW_NUMBER(), RANK(), LAG(), LEAD() и их применение</li>
+          <li>Анализ временных рядов и последовательностей</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Построение витрин данных</strong>
+        <ul>
+          <li>Моделирование данных и проектирование витрин</li>
+          <li>Анализ поездок, доходов, рейтингов водителей и ТО автомобилей</li>
+          <li>Использование оконных функций в аналитике</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Интеграция с BI-системами</strong>
+        <ul>
+          <li>Построение дашбордов в Apache Superset и Google Colab</li>
+          <li>Практические примеры визуализации и аналитики</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Финальный проект</strong>
+        <ul>
+          <li>Реальное задание: от создания таблиц до построения витрин и дешбордов</li>
+          <li>Оптимизация запросов и интеграция с BI‑решениями</li>
+        </ul>
+      </li>
+    </ol>
   </section>
 
-  <!-- ---------- BENEFITS ---------- -->
-  <section class="benefits">
-    <div class="benefit-item">
-      <i class="fas fa-laptop-code"></i>
-      <h3>Практика на реальных задачах</h3>
-      <p>Погрузитесь в практику: анализируйте и обрабатывайте данные, как в настоящих проектах.</p>
-    </div>
-    <div class="benefit-item">
-      <i class="fas fa-chalkboard-teacher"></i>
-      <h3>Поддержка автора</h3>
-      <p>Регулярные разборы вопросов и обратная связь в чатах и на вебинарах.</p>
-    </div>
-    <div class="benefit-item">
-      <i class="fas fa-user-clock"></i>
-      <h3>Гибкий график</h3>
-      <p>Учитесь в удобное время, без жёстких дедлайнов и лишнего стресса.</p>
-    </div>
+  <section class="section usp">
+    <h2>Уникальное торговое предложение (УТП)</h2>
+    <ul>
+      <li><strong>Практичность:</strong> Реальные бизнес‑кейсы и проекты, которые можно добавить в портфолио.</li>
+      <li><strong>От основ до экспертизы:</strong> Пошаговый путь от базовых SQL‑запросов до сложных аналитических витрин.</li>
+      <li><strong>Минимальные требования:</strong> Всё, что нужно – установленный PostgreSQL и DBeaver, без сложных контейнеров и виртуализации.</li>
+      <li><strong>Актуальность:</strong> Курс охватывает современные технологии Data Engineering, включая BI‑инструменты.</li>
+      <li><strong>Поддержка сообщества:</strong> Доступ к закрытым чатам и менторская поддержка от экспертов.</li>
+    </ul>
   </section>
 
-  <!-- ---------- ABOUT COURSE ---------- -->
-  <section class="about-course" id="about">
-    <h2>О курсе</h2>
-    <p>
-      Курс «SQL. Инженерия данных» проведёт вас от основ реляционных БД до сложных запросов с подзапросами и оконными функциями.
-      Вы научитесь эффективно извлекать, фильтровать, объединять данные и оптимизировать запросы в реальных сценариях.
-    </p>
-    <p>
-      После завершения обучения у вас будет уверенное понимание SQL, опыт самостоятельной работы с MySQL / PostgreSQL и
-      готовность к более продвинутым темам в сфере Data Engineering или аналитики.
-    </p>
+  <section class="section benefits">
+    <h2>Преимущества курса</h2>
+    <ul>
+      <li>Пошаговое обучение с реальными данными и практическими заданиями.</li>
+      <li>Глубокое понимание построения витрин и аналитики данных.</li>
+      <li>Подробная методичка с готовыми скриптами, запросами и примерами.</li>
+      <li>Финальный проект, позволяющий продемонстрировать полученные навыки работодателю.</li>
+      <li>Гибкий формат: учитесь в удобное время без необходимости установки сложного ПО.</li>
+    </ul>
   </section>
 
-  <!-- ---------- PROGRAM (пример) ---------- -->
-  <section class="course-program" id="program">
-    <h2>Программа курса</h2>
-    <div class="modules-container">
-      <div class="module-card">
-        <h3>1. Введение</h3>
-        <ul>
-          <li>1.1 Знакомство</li>
-          <li>1.2 Установка и настройка</li>
-        </ul>
-      </div>
-      <div class="module-card">
-        <h3>2. Основы SQL</h3>
-        <ul>
-          <li>SELECT, WHERE, ORDER BY</li>
-          <li>GROUP BY, HAVING, JOIN</li>
-          <li>Функции и агрегации</li>
-        </ul>
-      </div>
-      <div class="module-card">
-        <h3>3. Подзапросы и CTE</h3>
-        <ul>
-          <li>Коррелированные и некоррелированные</li>
-          <li>Common Table Expressions</li>
-        </ul>
-      </div>
-      <div class="module-card">
-        <h3>4. Оконные функции</h3>
-        <ul>
-          <li>OVER, PARTITION BY, ORDER BY</li>
-          <li>Ранжирование и аналитические функции</li>
-        </ul>
-      </div>
-      <div class="module-card">
-        <h3>5. Оптимизация</h3>
-        <ul>
-          <li>Индексы и планы выполнения</li>
-          <li>Работа с большими таблицами</li>
-        </ul>
-      </div>
-      <div class="module-card">
-        <h3>6. Итоговый проект</h3>
-        <ul>
-          <li>Создание структуры</li>
-          <li>Загрузка и анализ реальных данных</li>
-          <li>Презентация результатов</li>
-        </ul>
-      </div>
-    </div>
+  <section class="section free-module">
+    <h2>Бесплатный модуль курса</h2>
+    <ul>
+      <li>Обзор основ SQL и базовых запросов.</li>
+      <li>Практическое задание: создание базовой витрины из двух таблиц.</li>
+      <li>Введение в оконные функции с реальными примерами.</li>
+      <li>Мини‑проект в Google Colab: визуализация данных без установки ПО.</li>
+      <li>Доступ к учебным материалам на GitHub.</li>
+    </ul>
+    <p>Этот бесплатный модуль даст вам четкое представление о том, как работать с данными и создавать аналитические витрины, а также подготовит вас к переходу на полный курс.</p>
   </section>
 
-  <!-- ---------- REVIEWS ---------- -->
-  <section class="reviews" id="reviews">
-    <h2>Отзывы студентов</h2>
-    <div class="review-list">
-      <div class="review-item">
-        <p>
-          «Супер-понятные объяснения! Автор всегда на связи, плюс задания очень реалистичные. Теперь не боюсь работать
-          с большими таблицами и сложными запросами!»
-        </p>
-        <div class="review-author">— Елена</div>
-      </div>
-      <div class="review-item">
-        <p>
-          «Прошла курс за 2 месяца параллельно с работой. Узнала про подзапросы и оконные функции, чего не было в других
-          вводных курсах. Очень довольна.»
-        </p>
-        <div class="review-author">— Марина</div>
-      </div>
-      <div class="review-item">
-        <p>
-          «Как Data Analyst-джуниор, я искал чёткую базу по SQL. Этот курс на 100% оправдал ожидания. Рекомендую всем,
-          кто хочет разобраться в SQL глубже.»
-        </p>
-        <div class="review-author">— Алексей</div>
-      </div>
-    </div>
+  <section class="section">
+    <h2>Полная версия курса</h2>
+    <p>В полной версии курса вы получите:</p>
+    <ul>
+      <li>Полное погружение в SQL и Data Engineering — от базовых концепций до сложных аналитических запросов.</li>
+      <li>Подробные инструкции по моделированию данных, построению витрин и оптимизации запросов.</li>
+      <li>Практические кейсы, включающие интеграцию с BI‑системами (Superset, Google Colab) и построение дашбордов.</li>
+      <li>Личный менторинг и поддержка в закрытых чатах.</li>
+      <li>Финальный проект, который можно добавить в портфолио для трудоустройства.</li>
+      <li>Бонусные материалы и дополнительные уроки по современным технологиям Data Engineering.</li>
+    </ul>
   </section>
 
-  <!-- ---------- CTA BLOCK ---------- -->
-  <section class="cta-block">
-    <h2>Готовы прокачать навыки?</h2>
-    <p>Присоединяйтесь к курсу и станьте востребованным специалистом в сфере данных</p>
-    <a class="btn-cta" href="https://stepik.org/course/210499/promo" target="_blank">
-      Перейти на курс
-    </a>
+  <section class="section">
+    <h2>Призыв к действию</h2>
+    <p>Готовы открыть для себя мир Data Engineering и построить собственные аналитические витрины? Пройдите бесплатный модуль, получите ценные знания и перейдите на полный курс для глубокого погружения!</p>
+    <p style="text-align: center;"><a class="cta" href="https://your-course-link.com" target="_blank">Записаться на курс SQL. Инженерия данных</a></p>
   </section>
 
-  <!-- ---------- FOOTER ---------- -->
   <footer>
-    <p>&copy; 2025 Дмитрий Кузьмин — SQL. Инженерия данных</p>
-    <p>С любовью к данным — <a href="https://stepik.org/" target="_blank">Stepik</a></p>
+    <p>© 2025 Курс SQL. Инженерия данных. Все права защищены.</p>
   </footer>
 </body>
 </html>
