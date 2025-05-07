@@ -1,146 +1,161 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SQL курс — Stepik</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #ffffff;
-      color: #333;
-    }
-    header, section {
-      padding: 40px 20px;
-      max-width: 960px;
-      margin: auto;
-    }
-    header {
-      background-color: #f5f7fa;
-      text-align: center;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    .btn {
-      background-color: #2563eb;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .features, .benefits, .faq, .reviews, .instructor, .visuals {
-      margin-top: 40px;
-    }
-    .features ul, .benefits ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      padding-left: 0;
-      list-style: none;
-    }
-    .features li, .benefits li {
-      background: #f0f2f5;
-      padding: 20px;
-      border-radius: 10px;
-      flex: 1 1 250px;
-    }
-    .instructor img {
-      max-width: 120px;
-      border-radius: 100px;
-    }
-    .instructor {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .visuals img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-top: 10px;
-    }
-    .cta {
-      text-align: center;
-      margin: 60px 0;
-    }
-    @media (max-width: 600px) {
-      .instructor {
-        flex-direction: column;
-        text-align: center;
-      }
-      .features ul, .benefits ul {
-        flex-direction: column;
-      }
-    }
-  </style>
+  <title>SQL для инженеров и аналитиков с нуля</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Hero-секция -->
+  <header class="hero">
+    <div class="container">
+      <h1>Застряли на SQL-задачах без практики?</h1>
+      <p class="subheading">Практический курс с поддержкой, 280+ задач, живые разборы</p>
+    </div>
+  </header>
 
-<header id="top">
-  <h1>SQL для инженеров и аналитиков с нуля. Обучение + Практикум</h1>
-  <p>Практический курс SQL с поддержкой, подробными разборами и специально созданными базами данных.</p>
-  <a href="https://stepik.org/course/xxxx" class="btn">Начать обучение</a>
-</header>
+  <!-- Почему это важно -->
+  <section id="pain" class="container">
+    <h2>Почему это важно</h2>
+    <ul class="icons-list">
+      <li><span class="icon">🐢</span> Медленные и неэффективные запросы</li>
+      <li><span class="icon">⚠️</span> Ошибки в JOIN-ах и подзапросах</li>
+      <li><span class="icon">🚫</span> Невозможность пройти собеседование на junior-позицию</li>
+    </ul>
+  </section>
 
-<section class="features" id="features">
-  <h2>Преимущества курса</h2>
-  <ul>
-    <li>280+ задач и тестов</li>
-    <li>Проектная работа</li>
-    <li>Живая поддержка</li>
-    <li>CTE и оконные функции</li>
-    <li>Мыслить как инженер</li>
-  </ul>
-</section>
+  <!-- Наше решение -->
+  <section id="solution" class="container">
+    <h2>Наше решение</h2>
+    <div class="features">
+      <div class="feature-item">
+        <svg class="feature-icon"><use href="#icon-tasks"/></svg>
+        <p>280+ практических задач и тестов</p>
+      </div>
+      <div class="feature-item">
+        <svg class="feature-icon"><use href="#icon-project"/></svg>
+        <p>Проектная работа и живая поддержка в Telegram</p>
+      </div>
+      <div class="feature-item">
+        <svg class="feature-icon"><use href="#icon-db"/></svg>
+        <p>Специально созданные базы данных</p>
+      </div>
+    </div>
+  </section>
 
-<section class="benefits" id="benefits">
-  <h2>Что вы получите</h2>
-  <ul>
-    <li>Навык написания SQL-запросов</li>
-    <li>Умение отлаживать ошибки</li>
-    <li>Поддержка в Telegram</li>
-    <li>Сертификат Stepik</li>
-  </ul>
-</section>
+  <!-- Для кого -->
+  <section id="audience" class="container">
+    <h2>Для кого этот курс</h2>
+    <div class="cards">
+      <div class="card"><h3>Новички в аналитике и Data Engineering</h3></div>
+      <div class="card"><h3>Прошли теорию, но не поняли практику</h3></div>
+      <div class="card"><h3>Аналитики без уверенности в SQL</h3></div>
+    </div>
+  </section>
 
-<section class="instructor" id="instructor">
-  <img src="https://via.placeholder.com/120" alt="Кузьмин Дмитрий">
-  <div>
-    <h3>Кузьмин Дмитрий</h3>
-    <p>Data Engineer. Помогаю разобраться в SQL и Data Engineering без воды. Объясняю сложно — простыми словами. Готовлю к реальной работе.</p>
-  </div>
-</section>
+  <!-- Чему вы научитесь -->
+  <section id="skills" class="container">
+    <h2>Чему вы научитесь</h2>
+    <ul>
+      <li>SELECT, фильтрация, сортировка, агрегаты</li>
+      <li>Подзапросы, CTE, оконные функции</li>
+      <li>Оптимизация запросов и управление схемой</li>
+      <li>Импорт/экспорт данных в MySQL и DBeaver</li>
+      <li>Готовность к собеседованиям на junior/junior+</li>
+    </ul>
+    <pre><code class="sql">SELECT u.name, COUNT(o.id) AS orders_count
+FROM users u
+JOIN orders o ON u.id = o.user_id
+WHERE o.created_at &gt;= '2025-01-01'
+GROUP BY u.name
+ORDER BY orders_count DESC;</code></pre>
+  </section>
 
-<section class="reviews" id="reviews">
-  <h2>Отзывы и результаты</h2>
-  <p>★ 4.8 (4 отзыва) — 53 ученика уже прошли курс</p>
-</section>
+  <!-- Преимущества -->
+  <section id="benefits" class="container">
+    <h2>Что в нём такого хорошего</h2>
+    <div class="benefits-list">
+      <div class="benefit"><span class="icon">📚</span><p>Практика на реальных базах</p></div>
+      <div class="benefit"><span class="icon">🎥</span><p>Живые разборы каждого решения</p></div>
+      <div class="benefit"><span class="icon">💬</span><p>Поддержка автора в Telegram</p></div>
+      <div class="benefit"><span class="icon">🎓</span><p>Сертификат Stepik по окончании</p></div>
+      <div class="benefit"><span class="icon">⭐</span><p>Отзывы студентов: 4.8★ (56 учащихся)</p></div>
+    </div>
+  </section>
 
-<section class="visuals" id="screens">
-  <h2>Скриншоты курса</h2>
-  <img src="https://via.placeholder.com/800x400" alt="Скриншот 1">
-  <img src="https://via.placeholder.com/800x400" alt="Скриншот 2">
-</section>
+  <!-- Пример задачи -->
+  <section id="example-task" class="container">
+    <h2>Как выглядит одна из 280+ задач</h2>
+    <img src="screenshot.png" alt="Пример задачи" class="task-screenshot">
+    <div class="task-details">
+      <div class="detail"><h4>Условие</h4><p>Найдите пользователей с наибольшим количеством заказов за январь 2025.</p></div>
+      <div class="detail"><h4>Схема БД</h4><p>Таблицы users и orders.</p></div>
+      <div class="detail"><h4>Подсказка</h4><p>Используйте GROUP BY и HAVING.</p></div>
+      <div class="detail"><h4>Ответ</h4><p>Имя пользователя и число заказов.</p></div>
+      <div class="detail"><h4>Код запроса</h4><pre><code class="sql">SELECT u.name, COUNT(o.id) AS orders_count
+FROM users u
+JOIN orders o ON u.id = o.user_id
+WHERE o.created_at BETWEEN '2025-01-01' AND '2025-01-31'
+GROUP BY u.name
+ORDER BY orders_count DESC;
+</code></pre></div>
+    </div>
+  </section>
 
-<section class="faq" id="faq">
-  <h2>Частые вопросы</h2>
-  <h4>Кому подойдёт?</h4>
-  <p>Для новичков в аналитике, BI и data engineering. Подходит тем, кто прошёл курс, но не понял, или хочет системности и практики.</p>
-  <h4>Нужен ли опыт?</h4>
-  <p>Нет. Всё объясняется с нуля. Достаточно желания учиться и 20 минут в день.</p>
-</section>
+  <!-- Программа курса -->
+  <section id="program" class="container">
+    <h2>Программа курса</h2>
+    <ul>
+      <li>Введение и основы реляционных БД</li>
+      <li>Литеры и функции</li>
+      <li>JOIN, подзапросы, CTE</li>
+      <li>Оконные функции</li>
+      <li>Создание и изменение таблиц, индексы, внешние ключи</li>
+      <li>Импорт/экспорт в DBeaver</li>
+    </ul>
+  </section>
 
-<section class="cta" id="cta">
-  <h2>Готовы начать?</h2>
-  <p>Присоединяйтесь к ученикам и начните обучение прямо сейчас</p>
-  <a href="https://stepik.org/course/xxxx" class="btn">Перейти к курсу на Stepik</a>
-</section>
+  <!-- Footer / CTA -->
+  <footer class="container footer">
+    <a href="https://stepik.org" class="btn-cta">Пойти на курс</a>
+    <p>Сертификат Stepik. Гарантия качества.</p>
+  </footer>
 
+  <!-- SVG-иконки (спрайт) -->
+  <svg style="display:none;">
+    <symbol id="icon-tasks" viewBox="0 0 24 24"><!-- ... --></symbol>
+    <symbol id="icon-project" viewBox="0 0 24 24"><!-- ... --></symbol>
+    <symbol id="icon-db" viewBox="0 0 24 24"><!-- ... --></symbol>
+  </svg>
 </body>
 </html>
+
+/* styles.css */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+.container { width: 90%; max-width: 1200px; margin: auto; padding: 2rem 0; }
+.hero { background: linear-gradient(135deg, #4b6cb7, #182848); color: #fff; padding: 4rem 0; text-align: center; }
+.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+.hero .subheading { font-size: 1.2rem; }
+.icons-list { list-style: none; display: flex; justify-content: space-between; }
+.icons-list li { flex: 1; text-align: center; padding: 1rem; }
+.icons-list .icon { display: block; font-size: 2rem; margin-bottom: 0.5rem; }
+.features { display: flex; justify-content: space-between; }
+.feature-item { flex: 1; text-align: center; padding: 1rem; }
+.cards { display: flex; gap: 1rem; }
+.card { flex: 1; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; text-align: center; }
+#skills ul, #program ul { list-style: disc inside; margin-top: 1rem; }
+#skills pre, #example-task pre { background: #f4f4f4; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+.benefits-list { display: flex; flex-wrap: wrap; gap: 1rem; }
+.benefit { flex: 1 1 calc(33% - 1rem); display: flex; align-items: center; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; }
+.benefit .icon { font-size: 2rem; margin-right: 0.5rem; }
+.task-screenshot { width: 100%; border-radius: 8px; margin: 1rem 0; }
+.task-details .detail { margin-bottom: 1rem; }
+.btn-cta { display: inline-block; background: #4b6cb7; color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; }
+.footer { text-align: center; padding: 2rem 0; }
+@media (max-width: 768px) {
+  .icons-list, .features, .cards, .benefits-list { flex-direction: column; }
+  .icon, .feature-icon { font-size: 1.5rem; }
+}
