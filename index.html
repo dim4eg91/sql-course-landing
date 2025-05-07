@@ -1,15 +1,73 @@
-<!-- File: index.html -->
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SQL для инженеров и аналитиков с нуля</title>
-  <!-- Подключаем внешний файл стилей -->
   <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --bg-color: #F5F5F5;
+      --text-color: #333333;
+      --heading-color: #2C3E50;
+      --accent-color: #2980B9;
+      --secondary-accent: #27AE60;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+    .container {
+      width: 90%; max-width: 1200px; margin: auto; padding: 2rem 0;
+    }
+    .hero {
+      background-color: var(--heading-color); color: white; padding: 4rem 0; text-align: center;
+    }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero .subheading { font-size: 1.2rem; }
+    .icons-list {
+      list-style: none; display: flex; justify-content: space-between; margin-top: 2rem;
+    }
+    .icons-list li { flex: 1; text-align: center; padding: 1rem; }
+    .icons-list .icon { display: block; font-size: 2rem; margin-bottom: 0.5rem; }
+    .features { display: flex; justify-content: space-between; margin-top: 2rem; }
+    .feature-item { flex: 1; text-align: center; padding: 1rem; }
+    .cards { display: flex; gap: 1rem; margin-top: 2rem; }
+    .card {
+      flex: 1; background-color: var(--accent-color); color: white;
+      padding: 1.5rem; border-radius: 8px; text-align: center;
+    }
+    #skills ul, #program ul { list-style: disc inside; margin-top: 1rem; }
+    #skills pre {
+      background: #fff; padding: 1rem; border-radius: 4px; overflow-x: auto; color: var(--text-color);
+    }
+    .example-screenshot, .task-screenshot, .avatar {
+      width: 100%; border-radius: 8px; margin: 1rem 0; background-color: #fff; padding: 0.5rem;
+    }
+    #instructor .instructor {
+      display: flex; align-items: center; gap: 1rem; margin-top: 2rem;
+    }
+    #instructor .avatar {
+      width: 150px; border-radius: 50%; border: 4px solid var(--accent-color);
+    }
+    .btn-cta {
+      display: inline-block; background: var(--accent-color); color: white;
+      padding: 1rem 2rem; text-decoration: none; border-radius: 4px; margin-top: 2rem;
+      transition: background-color 0.3s ease;
+    }
+    .btn-cta:hover {
+      background-color: var(--secondary-accent);
+    }
+    .footer { text-align: center; padding: 2rem 0; background: #eee; color: var(--text-color); }
+    @media (max-width: 768px) {
+      .icons-list, .features, .cards, #instructor .instructor { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Hero-секция -->
   <header class="hero">
     <div class="container">
       <h1>Застряли на SQL-задачах без практики?</h1>
@@ -17,7 +75,6 @@
     </div>
   </header>
 
-  <!-- Почему это важно -->
   <section id="pain" class="container">
     <h2>Почему это важно</h2>
     <ul class="icons-list">
@@ -27,23 +84,15 @@
     </ul>
   </section>
 
-  <!-- Наше решение -->
   <section id="solution" class="container">
     <h2>Наше решение</h2>
     <div class="features">
-      <div class="feature-item">
-        <p>280+ практических задач и тестов</p>
-      </div>
-      <div class="feature-item">
-        <p>Проектная работа и живая поддержка в Telegram</p>
-      </div>
-      <div class="feature-item">
-        <p>Специально созданные базы данных</p>
-      </div>
+      <div class="feature-item"><p>280+ практических задач и тестов</p></div>
+      <div class="feature-item"><p>Проектная работа и живая поддержка в Telegram</p></div>
+      <div class="feature-item"><p>Специально созданные базы данных</p></div>
     </div>
   </section>
 
-  <!-- Для кого -->
   <section id="audience" class="container">
     <h2>Для кого этот курс</h2>
     <div class="cards">
@@ -53,7 +102,6 @@
     </div>
   </section>
 
-  <!-- Чему вы научитесь -->
   <section id="skills" class="container">
     <h2>Чему вы научитесь</h2>
     <ul>
@@ -71,28 +119,18 @@ GROUP BY u.name
 ORDER BY orders_count DESC;</code></pre>
   </section>
 
-  <!-- Пример теории -->
   <section id="theory-example" class="container">
     <h2>Как выглядит теория на практике</h2>
-    <img src="лендинг2.png" alt="Пример теории с запросом и результатом" class="example-screenshot">
-    <p>Для каждого примера мы показываем не только условие, но и готовый SQL-запрос с результатом.</p>
+    <img src="лендинг2.png" alt="Пример теории" class="example-screenshot">
+    <p>Каждый пример сопровождается SQL-запросом и результатом, чтобы вы могли понять логику выполнения.</p>
   </section>
 
-  <!-- Пример задачи -->
   <section id="example-task" class="container">
     <h2>Как устроена каждая задача</h2>
-    <img src="лендинг1.png" alt="Пример задачи с условием и решением" class="task-screenshot">
-    <p>У каждой задачи есть:</p>
-    <ul>
-      <li>Условие</li>
-      <li>Схема БД</li>
-      <li>Подсказка</li>
-      <li>Ответ</li>
-      <li>Код решения</li>
-    </ul>
+    <img src="лендинг1.png" alt="Пример задачи" class="task-screenshot">
+    <p>У каждой задачи есть: условие, схема, подсказка, готовый ответ и SQL-решение. Не нужно гадать!</p>
   </section>
 
-  <!-- Программа курса -->
   <section id="program" class="container">
     <h2>Программа курса</h2>
     <ul>
@@ -105,44 +143,17 @@ ORDER BY orders_count DESC;</code></pre>
     </ul>
   </section>
 
-  <!-- О преподавателе -->
   <section id="instructor" class="container">
     <h2>Преподаватель</h2>
     <div class="instructor">
       <img src="avatar.png" alt="Кузьмин Дмитрий" class="avatar">
-      <p><strong>Дмитрий Кузьмин</strong><br>Data Engineer с реальным опытом продакшен-проектов и подготовки к собеседованиям. Проводит живые разборы и помогает на каждом этапе.</p>
+      <p><strong>Дмитрий Кузьмин</strong><br>Data Engineer с опытом продакшен-проектов и подготовки к собеседованиям. Помогаю на каждом этапе.</p>
     </div>
   </section>
 
-  <!-- Footer / CTA -->
-  <footer class="container footer">
+  <footer class="footer">
     <a href="https://stepik.org" class="btn-cta">Пойти на курс</a>
     <p>Сертификат Stepik. Гарантия качества.</p>
   </footer>
 </body>
 </html>
-
-/* File: styles.css */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-.container { width: 90%; max-width: 1200px; margin: auto; padding: 2rem 0; }
-.hero { background: linear-gradient(135deg, #4b6cb7, #182848); color: #fff; padding: 4rem 0; text-align: center; }
-.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-.hero .subheading { font-size: 1.2rem; }
-.icons-list { list-style: none; display: flex; justify-content: space-between; }
-.icons-list li { flex: 1; text-align: center; padding: 1rem; }
-.icons-list .icon { display: block; font-size: 2rem; margin-bottom: 0.5rem; }
-.features { display: flex; justify-content: space-between; }
-.feature-item { flex: 1; text-align: center; padding: 1rem; }
-.cards { display: flex; gap: 1rem; }
-.card { flex: 1; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; text-align: center; }
-#skills ul, #program ul { list-style: disc inside; margin-top: 1rem; }
-#skills pre { background: #f4f4f4; padding: 1rem; border-radius: 4px; overflow-x: auto; }
-.example-screenshot, .task-screenshot, .avatar { width: 100%; border-radius: 8px; margin: 1rem 0; }
-#instructor .instructor { display: flex; align-items: center; gap: 1rem; }
-#instructor .avatar { width: 150px; border-radius: 50%; }
-.btn-cta { display: inline-block; background: #4b6cb7; color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; }
-.footer { text-align: center; padding: 2rem 0; }
-@media (max-width: 768px) {
-  .icons-list, .features, .cards, #instructor .instructor { flex-direction: column; }
-}
