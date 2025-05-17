@@ -1,64 +1,154 @@
-
+<!-- sql-base.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>SQL для инженеров и аналитиков с нуля — Обучение + Практикум</title>
   <style>
-    body {font-family: Arial, sans-serif; margin:0; padding:0; color:#333;}
-    header {background:#f8f8f8; padding:20px; text-align:center;}
-    nav a {margin:0 10px; color:#333; text-decoration:none; font-weight:bold;}
-    .container {max-width:800px; margin:20px auto; padding:0 20px;}
-    .section {margin-bottom:40px;}
-    h1,h2 {margin-bottom:10px;}
-    ul {margin-left:20px;}
-    .cta {display:inline-block; padding:10px 20px; background:#007bff; color:#fff; text-decoration:none; border-radius:4px;}
-    .cta:hover {background:#0056b3;}
-    table {width:100%; border-collapse:collapse; margin-bottom:20px;}
-    th, td {border:1px solid #ccc; padding:8px; text-align:left;}
-    th {background:#eee;}
-    footer {background:#f8f8f8; text-align:center; padding:10px 0; margin-top:40px;}
+    body { font-family: Arial, sans-serif; margin:0; padding:0; color:#333; line-height:1.6; }
+    a { text-decoration:none; color: inherit; }
+    header { background:#fff; border-bottom:1px solid #eee; position:sticky; top:0; z-index:100; }
+    nav { max-width:900px; margin:0 auto; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; }
+    nav a { margin:0 10px; color:#333; font-weight:600; }
+    .container { max-width:900px; margin:0 auto; padding:40px 20px; }
+    section { margin-bottom:60px; }
+    h1, h2, h3 { color:#222; margin-bottom:15px; }
+    p { margin-bottom:20px; }
+    ul { margin-left:20px; margin-bottom:20px; }
+    .cta { display:inline-block; padding:15px 30px; background:#007bff; color:#fff; border-radius:4px; font-size:1rem; font-weight:600; transition:background .2s; }
+    .cta:hover { background:#0056b3; }
+    .feature { display:flex; align-items:flex-start; margin-bottom:20px; }
+    .feature-icon { font-size:1.5rem; margin-right:15px; color:#007bff; }
+    .testimonial { background:#f8f8f8; padding:20px; border-radius:4px; margin-bottom:20px; }
+    .faq-item { margin-bottom:15px; }
+    .faq-item summary { cursor:pointer; font-weight:600; }
+    footer { background:#fff; border-top:1px solid #eee; text-align:center; padding:20px; font-size:0.9rem; }
   </style>
-  <title>SQL с нуля</title>
 </head>
 <body>
-<header>
-  <nav>
-    <a href="index.html">Главная</a>
-    <a href="products.html">Курсы</a>
-  </nav>
-</header>
-<div class="container">
 
-<section class="section" id="attention">
-  <h2>Внимание</h2>
-  <p>Практический курс SQL с нуля: забудьте панические SELECT-ы и шаблоны!</p>
-</section>
-<section class="section" id="interest">
-  <h2>Интерес</h2>
-  <ul>
-    <li>Устали от сухой теории и “примеры на 1 строку”?</li>
-    <li>На собеседованиях натыкаетесь на неожиданные данные и теряетесь?</li>
-    <li>В таблицах не просто строки, а задачи — но как их решать?</li>
-  </ul>
-</section>
-<section class="section" id="desire">
-  <h2>Желание</h2>
-  <ul>
-    <li>Освоить SELECT, WHERE, JOIN, CTE и оконные функции.</li>
-    <li>Оптимизировать запросы и рефакторить чужой код.</li>
-    <li>Импортировать CSV, настраивать схемы в MySQL и DBeaver.</li>
-    <li>Решать реальные кейсы и отлавливать ловушки — как профи.</li>
-  </ul>
-</section>
-<section class="section" id="action">
-  <h2>Действие</h2>
-  <a class="cta" href="#purchase">Записаться со скидкой 30%</a>
-</section>
+  <header>
+    <nav>
+      <a href="index.html">Главная</a>
+      <div>
+        <a href="products.html">Курсы</a>
+        <a href="sql-base.html">SQL с нуля</a>
+        <a href="sql-junior.html">Junior</a>
+        <a href="sql-middle.html">Middle</a>
+        <a href="sql-upper.html">Upper-Middle</a>
+      </div>
+    </nav>
+  </header>
 
-</div>
-<footer>
-  &copy; 2025 Автор курса
-</footer>
+  <!-- Attention -->
+  <section class="container" id="hero">
+    <h1>SQL для инженеров и аналитиков с нуля</h1>
+    <p><strong>Забудьте панические SELECT-ы!</strong> Практический курс с поддержкой, подробными разборами и авторскими базами данных.</p>
+    <a class="cta" href="#purchase">Записаться со скидкой 30%</a>
+  </section>
+
+  <!-- Interest -->
+  <section class="container" id="pain">
+    <h2>Почему так сложно освоить SQL?</h2>
+    <ul>
+      <li>📉 Много теории без практики — вы теряетесь в реальных данных.</li>
+      <li>🐌 Шаблоны вместо понимания замедляют ваш рост.</li>
+      <li>⚠️ На собеседованиях «сложные кейсы» ставят в тупик.</li>
+    </ul>
+  </section>
+
+  <!-- Desire -->
+  <section class="container" id="features">
+    <h2>Что вы получите</h2>
+    <div class="feature">
+      <div class="feature-icon">💯</div>
+      <div>
+        <h3>280+ задач и тестов</h3>
+        <p>Две базы данных: одна для базовых кейсов, вторая — под оконные функции.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🛠️</div>
+      <div>
+        <h3>Проектная работа</h3>
+        <p>Реальный мини-проект в конце курса закрепит все навыки.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🎓</div>
+      <div>
+        <h3>Поддержка в Telegram</h3>
+        <p>Автор отвечает на вопросы и помогает решить сложные моменты.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🚀</div>
+      <div>
+        <h3>Собеседования без страха</h3>
+        <p>Вы научитесь думать как инженер данных и проходить junior/junior+ интервью.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preview -->
+  <section class="container" id="preview">
+    <h2>Пример практики</h2>
+    <pre><code>-- Задача:
+-- Найти топ-5 клиентов по сумме покупок за квартал.
+
+SELECT client_id,
+       SUM(amount) AS total_spent
+FROM purchases
+WHERE purchase_date BETWEEN '2025-01-01' AND '2025-03-31'
+GROUP BY client_id
+ORDER BY total_spent DESC
+LIMIT 5;</code></pre>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="container" id="testimonials">
+    <h2>Отзывы студентов</h2>
+    <div class="testimonial">
+      <p>“Курс дал чёткое понимание CTE и оконных функций. Базу SQL я освоил за неделю!”</p>
+      <p><strong>— Мария, Junior Data Engineer</strong></p>
+    </div>
+    <div class="testimonial">
+      <p>“Поддержка в Telegram реально помогает на ходу решать задачи.”</p>
+      <p><strong>— Илья, аналитик BI</strong></p>
+    </div>
+  </section>
+
+  <!-- Purchase -->
+  <section class="container" id="purchase">
+    <h2>Старт сейчас — получите доступ к проекту!</h2>
+    <ul>
+      <li>🔖 <strong>Скидка 30%</strong> до <time datetime="2025-06-03">3 июня</time></li>
+      <li>∞ Доступ к материалам навсегда</li>
+      <li>💰 Возврат в течение 7 дней, если не понравится</li>
+    </ul>
+    <a class="cta" href="https://stepik.org/course/sql-base">Купить со скидкой 30%</a>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container" id="faq">
+    <h2>Часто задаваемые вопросы</h2>
+    <details class="faq-item">
+      <summary>Сколько времени занимает курс?</summary>
+      <p>Около 20–30 минут в день, всё в удобном темпе без строгих дедлайнов.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Нужно ли что-то устанавливать?</summary>
+      <p>Инструкция по установке MySQL и DBeaver внутри курса — всё просто и быстро.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Есть ли поддержка?</summary>
+      <p>Да, личный Telegram-чат с автором и другими студентами курса.</p>
+    </details>
+  </section>
+
+  <footer>
+    &copy; 2025 Дмитрий, все права защищены
+  </footer>
 </body>
 </html>

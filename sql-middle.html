@@ -1,64 +1,129 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {font-family: Arial, sans-serif; margin:0; padding:0; color:#333;}
-    header {background:#f8f8f8; padding:20px; text-align:center;}
-    nav a {margin:0 10px; color:#333; text-decoration:none; font-weight:bold;}
-    .container {max-width:800px; margin:20px auto; padding:0 20px;}
-    .section {margin-bottom:40px;}
-    h1,h2 {margin-bottom:10px;}
-    ul {margin-left:20px;}
-    .cta {display:inline-block; padding:10px 20px; background:#007bff; color:#fff; text-decoration:none; border-radius:4px;}
-    .cta:hover {background:#0056b3;}
-    table {width:100%; border-collapse:collapse; margin-bottom:20px;}
-    th, td {border:1px solid #ccc; padding:8px; text-align:left;}
-    th {background:#eee;}
-    footer {background:#f8f8f8; text-align:center; padding:10px 0; margin-top:40px;}
-  </style>
-  <title>100 задач Middle</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>100 SQL задач: уровень Middle — подготовка к собеседованию</title>
+  <style>/* одинаковый CSS */ body{font-family:Arial,sans-serif;margin:0;padding:0;color:#333;line-height:1.6;}a{text-decoration:none;color:inherit;}header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:100;}nav{max-width:900px;margin:0 auto;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;}nav a{margin:0 10px;color:#333;font-weight:600;}.container{max-width:900px;margin:0 auto;padding:40px 20px;}section{margin-bottom:60px;}h1,h2,h3{color:#222;margin-bottom:15px;}p{margin-bottom:20px;}ul{margin-left:20px;margin-bottom:20px;}.cta{display:inline-block;padding:15px 30px;background:#007bff;color:#fff;border-radius:4px;font-size:1rem;font-weight:600;transition:background .2s;}.cta:hover{background:#0056b3;}.feature{display:flex;align-items:flex-start;margin-bottom:20px;}.feature-icon{font-size:1.5rem;margin-right:15px;color:#007bff;}.testimonial{background:#f8f8f8;padding:20px;border-radius:4px;margin-bottom:20px;}.faq-item{margin-bottom:15px;}.faq-item summary{cursor:pointer;font-weight:600;}footer{background:#fff;border-top:1px solid #eee;text-align:center;padding:20px;font-size:0.9rem;}</style>
 </head>
 <body>
-<header>
-  <nav>
-    <a href="index.html">Главная</a>
-    <a href="products.html">Курсы</a>
-  </nav>
-</header>
-<div class="container">
 
-<section class="section" id="attention">
-  <h2>Внимание</h2>
-  <p>Перешли на middle, но SQL тормозит ваш рост? 100 задач из реальных middle-собеседований выведут вас на новый уровень.</p>
-</section>
-<section class="section" id="interest">
-  <h2>Интерес</h2>
-  <ul>
-    <li>Не хватает простых JOIN’ов и GROUP BY?</li>
-    <li>Нужно прокачать CTE, оконные функции и сложные подзапросы?</li>
-    <li>Хотите писать читаемый и оптимальный код?</li>
-  </ul>
-</section>
-<section class="section" id="desire">
-  <h2>Желание</h2>
-  <ul>
-    <li>Писать CTE и рекурсивные запросы без усилий.</li>
-    <li>Управлять оконными функциями (RANK, LAG, FIRST_VALUE).</li>
-    <li>Сокращать время выполнения через индексы и планы.</li>
-    <li>Объяснять архитектуру витрин и слоёв данных.</li>
-  </ul>
-</section>
-<section class="section" id="action">
-  <h2>Действие</h2>
-  <a class="cta" href="#reserve">Забронировать курс со скидкой 25%</a>
-</section>
+  <header>
+    <nav>
+      <a href="index.html">Главная</a>
+      <div>
+        <a href="products.html">Курсы</a>
+        <a href="sql-base.html">SQL с нуля</a>
+        <a href="sql-junior.html">Junior</a>
+        <a href="sql-middle.html">Middle</a>
+        <a href="sql-upper.html">Upper-Middle</a>
+      </div>
+    </nav>
+  </header>
 
-</div>
-<footer>
-  &copy; 2025 Автор курса
-</footer>
+  <!-- Attention -->
+  <section class="container" id="hero">
+    <h1>100 SQL задач: уровень Middle</h1>
+    <p><strong>Перешли на middle, но SQL тормозит ваш рост?</strong> 100 кейсов из реальных собеседований выведут вас на новый уровень.</p>
+    <a class="cta" href="#purchase">Забронировать со скидкой 25%</a>
+  </section>
+
+  <!-- Interest -->
+  <section class="container" id="pain">
+    <h2>Что мешает стать уверенным Middle?</h2>
+    <ul>
+      <li>🔍 Простые JOIN и GROUP BY уже пройдены, но нужны новые вызовы.</li>
+      <li>🛠️ CTE, рекурсия и оконные функции вызывают сложности.</li>
+      <li>⏱️ Оптимизация запросов и понимание плана — слабая зона.</li>
+    </ul>
+  </section>
+
+  <!-- Desire -->
+  <section class="container" id="features">
+    <h2>Прокачаете ключевые навыки</h2>
+    <div class="feature">
+      <div class="feature-icon">🔗</div>
+      <div>
+        <h3>Глубокие CTE и рекурсия</h3>
+        <p>Научитесь строить цепочки запросов и решать иерархические задачи.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🏷️</div>
+      <div>
+        <h3>Сложные оконные функции</h3>
+        <p>Работа с LAG, LEAD, FIRST_VALUE, NTILE и другими приёмами.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⚡</div>
+      <div>
+        <h3>Оптимизация и индексы</h3>
+        <p>Ускорите медленные запросы и поймёте, где и как использовать индексы.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📊</div>
+      <div>
+        <h3>Архитектура витрин</h3>
+        <p>Разберёте, как строить слои данных и читать планы выполнения.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preview -->
+  <section class="container" id="preview">
+    <h2>Пример middle-кейса</h2>
+    <pre><code>-- Задача:
+-- Рассчитать retention за неделю по месяцам с помощью LAG.
+
+SELECT
+  MONTH(e.event_date) AS month,
+  e.week,
+  e.active_users,
+  LAG(e.active_users) OVER (ORDER BY month, week) AS prev_week_users
+FROM weekly_metrics e;</code></pre>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="container" id="testimonials">
+    <h2>Отзывы middle-студентов</h2>
+    <div class="testimonial">
+      <p>“Раньше я боялся рекурсивных CTE, теперь пишу их на автопилоте.”</p>
+      <p><strong>— Сергей, Middle Data Engineer</strong></p>
+    </div>
+    <div class="testimonial">
+      <p>“Оптимизация плавно зашла, я понял, как читать explain-план.”</p>
+      <p><strong>— Ольга, BI-аналитик</strong></p>
+    </div>
+  </section>
+
+  <!-- Purchase -->
+  <section class="container" id="purchase">
+    <h2>Запуск курса — успейте забронировать!</h2>
+    <ul>
+      <li>🔖 <strong>Скидка 25%</strong> до <time datetime="2025-08-01">1 августа</time></li>
+      <li>∞ Навсегда доступ к задачам и материалам</li>
+      <li>💸 Возврат в течение 7 дней</li>
+    </ul>
+    <a class="cta" href="https://stepik.org/course/sql-middle-100">Забронировать со скидкой 25%</a>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container" id="faq">
+    <h2>FAQ</h2>
+    <details class="faq-item">
+      <summary>Я ещё не пробовал все функции окон — смогу пройти?</summary>
+      <p>Да — каждый приём объясняется на примерах и закрепляется задачами.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Есть ли разбираемые кейсы из финтеха?</summary>
+      <p>Конечно — среди 100 задач есть реальные примеры из банковских отчётов.</p>
+    </details>
+  </section>
+
+  <footer>
+    &copy; 2025 Дмитрий, все права защищены
+  </footer>
 </body>
 </html>

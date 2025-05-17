@@ -1,51 +1,153 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Наша линейка SQL-курсов</title>
   <style>
-    body {font-family: Arial, sans-serif; margin:0; padding:0; color:#333;}
-    header {background:#f8f8f8; padding:20px; text-align:center;}
-    nav a {margin:0 10px; color:#333; text-decoration:none; font-weight:bold;}
-    .container {max-width:800px; margin:20px auto; padding:0 20px;}
-    .section {margin-bottom:40px;}
-    h1,h2 {margin-bottom:10px;}
-    ul {margin-left:20px;}
-    .cta {display:inline-block; padding:10px 20px; background:#007bff; color:#fff; text-decoration:none; border-radius:4px;}
-    .cta:hover {background:#0056b3;}
-    table {width:100%; border-collapse:collapse; margin-bottom:20px;}
-    th, td {border:1px solid #ccc; padding:8px; text-align:left;}
-    th {background:#eee;}
-    footer {background:#f8f8f8; text-align:center; padding:10px 0; margin-top:40px;}
+    /* Базовые стили */
+    body { margin:0; padding:0; font-family: Arial, sans-serif; color:#333; line-height:1.5; }
+    a { text-decoration:none; color: inherit; }
+    img { max-width:100%; display:block; }
+
+    /* Шапка */
+    header { background:#fff; border-bottom:1px solid #eee; position:sticky; top:0; z-index:10; }
+    nav { max-width:1000px; margin:0 auto; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; }
+    nav a { margin:0 10px; font-weight:600; color:#333; }
+
+    /* Контейнер */
+    .container { max-width:1000px; margin:0 auto; padding:40px 20px; }
+
+    /* Hero-блок */
+    .hero { text-align:center; margin-bottom:60px; }
+    .hero h1 { font-size:2.5rem; margin-bottom:10px; }
+    .hero p { font-size:1.1rem; color:#555; }
+
+    /* Преимущества */
+    .benefits { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; margin-bottom:60px; }
+    .benefit { flex:1 1 280px; text-align:center; }
+    .benefit-icon { font-size:2rem; color:#007bff; margin-bottom:10px; }
+    .benefit h3 { margin-bottom:5px; font-size:1.2rem; }
+    .benefit p { color:#555; font-size:0.95rem; }
+
+    /* Сетка курсов */
+    .courses-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:30px; }
+    .course-card { border:1px solid #eee; border-radius:6px; overflow:hidden; transition:box-shadow .2s; background:#fff; display:flex; flex-direction:column; }
+    .course-card:hover { box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+    .course-img { width:100%; height:180px; object-fit:cover; background:#f0f0f0; }
+    .course-content { padding:20px; flex:1; display:flex; flex-direction:column; }
+    .course-title { font-size:1.3rem; margin-bottom:10px; color:#222; }
+    .course-level { font-size:0.9rem; color:#777; margin-bottom:10px; }
+    .course-desc { flex:1; color:#555; margin-bottom:15px; }
+    .course-cta { display:inline-block; padding:12px 20px; background:#007bff; color:#fff; border-radius:4px; font-weight:600; transition:background .2s; }
+    .course-cta:hover { background:#0056b3; }
+
+    /* Подвал */
+    footer { background:#fafafa; border-top:1px solid #eee; text-align:center; padding:20px; margin-top:60px; font-size:0.9rem; color:#777; }
   </style>
-  <title>Наши курсы</title>
 </head>
 <body>
-<header>
-  <nav>
-    <a href="index.html">Главная</a>
-    <a href="products.html">Курсы</a>
-  </nav>
-</header>
-<div class="container">
 
-<h1>Наши курсы</h1>
-<table>
-  <thead>
-    <tr><th>Курс</th><th>Уровень</th><th>Задач</th><th>Ссылка</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>SQL для инженеров и аналитиков с нуля</td><td>Стартовый</td><td>280+</td><td><a href="sql-base.html">Подробнее</a></td></tr>
-    <tr><td>100 задач: уровень Junior</td><td>Junior</td><td>100</td><td><a href="sql-junior.html">Подробнее</a></td></tr>
-    <tr><td>100 задач: уровень Middle</td><td>Middle</td><td>100</td><td><a href="sql-middle.html">Подробнее</a></td></tr>
-    <tr><td>100 задач: уровень Upper-Middle</td><td>Upper-Middle</td><td>100</td><td><a href="sql-upper.html">Подробнее</a></td></tr>
-  </tbody>
-</table>
+  <!-- Header -->
+  <header>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="products.html" style="color:#007bff;">Курсы</a>
+      <a href="contact.html">Контакты</a>
+    </nav>
+  </header>
 
-</div>
-<footer>
-  &copy; 2025 Автор курса
-</footer>
+  <div class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Выберите курс для вашего уровня</h1>
+      <p>Наша линейка SQL-курсов от новичка до профи — практические кейсы, автопроверка и авторская поддержка.</p>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">🧩</div>
+        <h3>100+ задач</h3>
+        <p>Каждый курс — реальные кейсы из интервью, адаптированные под ваш уровень.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🚀</div>
+        <h3>Автопроверка</h3>
+        <p>Тренируйтесь онлайн и сразу узнавайте результат.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">💬</div>
+        <h3>Поддержка автора</h3>
+        <p>Закрытый Telegram-чат для вопросов и дополнительных разборов.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🎓</div>
+        <h3>Гарантия результата</h3>
+        <p>Возврат средств в течение 7 дней, если курс не подойдет.</p>
+      </div>
+    </section>
+
+    <!-- Сетка курсов -->
+    <section class="courses-grid">
+      <!-- SQL с нуля -->
+      <div class="course-card">
+        <img class="course-img" src="images/sql-base.jpg" alt="SQL с нуля">
+        <div class="course-content">
+          <h2 class="course-title">SQL для инженеров и аналитиков с нуля</h2>
+          <div class="course-level">Уровень: Начальный</div>
+          <p class="course-desc">
+            Изучите SQL с нуля на практике: 280+ задач, проект, тесты и поддержка. Освойте SELECT, JOIN, CTE и оконные функции!
+          </p>
+          <a class="course-cta" href="sql-base.html">Подробнее &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Junior -->
+      <div class="course-card">
+        <img class="course-img" src="images/sql-junior.jpg" alt="100 задач Junior">
+        <div class="course-content">
+          <h2 class="course-title">100 задач: уровень Junior</h2>
+          <div class="course-level">Уровень: Junior</div>
+          <p class="course-desc">
+            Пройдите 100 реальных кейсов из собеседований, получите автопроверку и разборы. Готовьтесь к первому интервью без паники!
+          </p>
+          <a class="course-cta" href="sql-junior.html">Подробнее &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Middle -->
+      <div class="course-card">
+        <img class="course-img" src="images/sql-middle.jpg" alt="100 задач Middle">
+        <div class="course-content">
+          <h2 class="course-title">100 задач: уровень Middle</h2>
+          <div class="course-level">Уровень: Middle</div>
+          <p class="course-desc">
+            Прокачайте CTE, рекурсию и оконные функции на 100 кейсах из реальных middle-собеседований. Переходите на следующий уровень!
+          </p>
+          <a class="course-cta" href="sql-middle.html">Подробнее &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Upper-Middle -->
+      <div class="course-card">
+        <img class="course-img" src="images/sql-upper.jpg" alt="100 задач Upper-Middle">
+        <div class="course-content">
+          <h2 class="course-title">100 задач: уровень Upper-Middle</h2>
+          <div class="course-level">Уровень: Upper-Middle</div>
+          <p class="course-desc">
+            Интенсив из 100 edge-кейсов, NULL-ловушек и архитектурных сценариев. Готовьтесь к собеседованиям в Яндекс, Авито и Тинькофф!
+          </p>
+          <a class="course-cta" href="sql-upper.html">Подробнее &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Дмитрий. Все права защищены.
+  </footer>
+
 </body>
 </html>
